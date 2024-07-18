@@ -4,9 +4,12 @@ import Layout from "./pages/Layout";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { ToastContainer, toast } from "react-toastify";
+
 function App() {
   return (
     <>
+      <ToastContainer position="top-center" />
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />}></Route>

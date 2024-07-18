@@ -7,10 +7,12 @@ const createUser = async (req, res) => {
     res.status(201).json({ user });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
-      succeded: false,
-      error,
-    });
+    if (error.code == 11000) {
+      res.status(500).json({
+        succeded: false,
+        error: { message: "Bu kullanici veya e mail kayitli" },
+      });
+    }
   }
 };
 
