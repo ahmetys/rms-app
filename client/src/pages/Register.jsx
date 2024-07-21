@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 function Register() {
@@ -54,23 +54,23 @@ function Register() {
           <img src="../src/assets/images/logo.png" className="w-2/3" />
         </div>
         <div className="">
-          <h2 className="text-xl font-semibold mb-3">Yeni Kayit</h2>
+          <h2 className="text-xl font-semibold mb-3">Yeni Kullanici Kaydi</h2>
           <form onSubmit={handleRegisterSubmit}>
             <div>
-              <input type="text" name="username" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Kullanici adi girin" />
+              <input autoComplete="new-password" type="text" name="username" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Kullanici adi girin" />
             </div>
             <div>
-              <input type="email" name="email" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Email girin" />
+              <input type="email" name="email" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="E-Posta adresinizi girin" />
             </div>
             <div className="relative flex justify-end items-center mb-4">
-              <input type={inputType} name="password" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Sifre girin" />
-              <button onClick={togglePasswordInput} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
+              <input type={inputType} name="password" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Sifrenizi girin" />
+              <button type="button" onClick={togglePasswordInput} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
                 <i className="fa-regular fa-eye text-xl"></i>
               </button>
             </div>
             <div className="relative flex justify-end items-center mb-4">
-              <input type={inputType} name="confirmPassword" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Sifre girin" />
-              <button onClick={togglePasswordInput} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
+              <input type={inputType} name="confirmPassword" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Sifrenizi tekrar girin" />
+              <button type="button" onClick={togglePasswordInput} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
                 <i className="fa-regular fa-eye text-xl"></i>
               </button>
             </div>

@@ -5,6 +5,8 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { ToastContainer, toast } from "react-toastify";
+import Cookies from "js-cookie";
+import Customers from "./pages/Customers";
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Dashboard />}></Route>
+              <Route index path="/dashboard" element={<Dashboard />}></Route>
+              <Route index path="/customers" element={<Customers />}></Route>
             </Route>
           </Route>
         </Routes>
@@ -26,9 +29,9 @@ function App() {
 }
 
 const PrivateRoute = () => {
-  const [token, setToken] = useState(JSON.parse(localStorage.getItem("auth")) || "");
+  const [token, setToken] = useState(Cookies.get("token"));
   if (!token) {
-    // return <Navigate to="/login" />;
+    return <Navigate to="/login" />;
   }
   return <Outlet />;
 };
