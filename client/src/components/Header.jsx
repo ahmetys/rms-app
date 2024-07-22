@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
 
 function Header() {
+  const [cookie, setCookie, removeCookie] = useCookies(["token"]);
   const navigate = useNavigate();
   const [actionsPopup, setActionsPopup] = useState("hidden");
   const toggleActionsPopup = () => {
     setActionsPopup(actionsPopup === "hidden" ? "flex" : "hidden");
   };
   const logout = () => {
-    Cookies.remove("token");
+    // Cookies.remove("jwt");
+    removeCookie("token", { path: "/" });
     navigate("/login");
   };
   return (

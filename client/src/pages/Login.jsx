@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import Cookies from "js-cookie";
+import { useCookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 function Login() {
+  const [cookie, setCookie, removeCookie] = useCookies(["jwt"]);
   const [inputType, setInputType] = useState("password");
-  const [token, setToken] = useState(JSON.parse(localStorage.getItem("auth")) || "");
   const navigate = useNavigate();
   const togglePasswordInput = () => {
     setInputType(inputType === "password" ? "text" : "password");
@@ -21,22 +22,24 @@ function Login() {
         password,
       };
       try {
-        const response = await axios.post("http://localhost:3000/login", formData);
-        console.log(response);
-        //localStorage.setItem("auth", JSON.stringify(response.data.token));
-        Cookies.set("token", response.data.token, { expires: 7, secure: true });
+        const response = await axios.post("http://localhost:3000/login", formData, { withCredentials: true });
+        setCookie("token", response.data.token, {
+          maxAge: 1000 * 60 * 60 * 24 * 30,
+          secure: true,
+        });
+        //Cookies.set("token", response.data.token, { expires: 7, secure: true });
         toast.success("Login successfull");
         navigate("/dashboard");
       } catch (err) {
         console.log(err);
-        toast.error(err.message);
+        toast.error(err.response.data.msg);
       }
     } else {
       toast.error("Please fill all inputs");
     }
   };
   useEffect(() => {
-    if (token !== "") {
+    if (cookie.token) {
       toast.success("You already logged in");
       navigate("/dashboard");
     }
@@ -45,7 +48,7 @@ function Login() {
     <div className="bg-mblue-50 font-montserrat flex justify-center items-center h-dvh p-4">
       <div className="bg-white drop-shadow-xl rounded p-10 w-[450px]">
         <div className="mb-4 p-5 flex items-center justify-center">
-          <img src="images/logo.png" className="w-2/3" />
+          <img src="../src/assets/images/logo.png" className="w-2/3" />
         </div>
         <div className="">
           <h2 className="text-xl font-semibold mb-1">Hosgeldiniz</h2>

@@ -1,10 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 function Register() {
+  const [cookie, setCookie, removeCookie] = useCookies(["jwt"]);
+
   //toast("Wow so easy !");
   const [inputType, setInputType] = useState("password");
   const navigate = useNavigate();
@@ -47,6 +50,14 @@ function Register() {
   const togglePasswordInput = () => {
     setInputType(inputType === "password" ? "text" : "password");
   };
+
+  useEffect(() => {
+    if (cookie.token) {
+      toast.success("You already logged in");
+      navigate("/dashboard");
+    }
+  }, []);
+
   return (
     <div className="bg-mblue-50 font-montserrat flex justify-center items-center h-dvh p-4">
       <div className="bg-white drop-shadow-xl rounded p-10 w-[450px]">

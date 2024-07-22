@@ -13,3 +13,9 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+@layer components {
+  .active {
+    @apply bg-mblue-600 hover:!bg-mblue-700 text-white;
+  }
+}

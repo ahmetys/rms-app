@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import cors from "cors";
 import mainRouter from "./routes/mainRouter.js";
-import { authMiddleware } from "./middlewares/authMiddleware.js";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -19,7 +18,7 @@ app.use(
     credentials: true,
   })
 );
-app.use("*", authMiddleware);
+// app.use("*", authMiddleware);
 //app.options(cors(corsConfig));
 //app.use("*", checkUser);
 app.use("/", mainRouter);
