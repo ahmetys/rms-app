@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 function Register() {
   const [cookie, setCookie, removeCookie] = useCookies(["jwt"]);
@@ -92,9 +92,9 @@ function Register() {
             <button className="cursor-pointer p-3 mb-6 w-full text-white bg-mblue-500 rounded-none hover:bg-mblue-600 duration-300 drop-shadow-xl">Kayit ol</button>
             <div className="flex justify-center space-x-3 mt-2">
               <p>Zaten Üye misiniz?</p>
-              <a href="#" className="text-mblue-800 font-semibold">
+              <Link to={`/login`} className="text-mblue-800 font-semibold">
                 Giris Yap!
-              </a>
+              </Link>
             </div>
           </form>
         </div>

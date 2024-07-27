@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 function NewCustomer() {
   const [customerData, setCustomerData] = useState({});
-  const createNewCustomer = async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/api/customers/createCustomer", { ...customerData }, { withCredentials: true });
@@ -33,7 +33,7 @@ function NewCustomer() {
         <h1 className="text-4xl font-semibold">Yeni Müsteri Ekle</h1>
       </div>
       {/*Yeni Müsteri Body*/}
-      <form onSubmit={createNewCustomer}>
+      <form onSubmit={handleFormSubmit}>
         <div>
           <h2 className="p-5 font-semibold bg-gray-50 border-b">Müsteri Bilgileri</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">

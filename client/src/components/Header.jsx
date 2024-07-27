@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
+import { useUser, useUserDispatch } from "../context/UserContext";
 
 function Header() {
   const [cookie, setCookie, removeCookie] = useCookies(["token"]);
@@ -11,9 +12,11 @@ function Header() {
   const toggleActionsPopup = () => {
     setActionsPopup(actionsPopup === "hidden" ? "flex" : "hidden");
   };
+  const user = useUser();
+  const dispatch = useUserDispatch();
   const logout = () => {
-    // Cookies.remove("jwt");
     removeCookie("token", { path: "/" });
+    dispatch({ type: "LOGOUT" });
     navigate("/login");
   };
   return (
@@ -49,8 +52,8 @@ function Header() {
           <div className="flex space-x-3 border-b p-3 items-center">
             <img src="./images/avatar.png" className="rounded-full h-10" />
             <div className="flex flex-col">
-              <p className="font-bold">Admin</p>
-              <span className="w-full text-sm">admin@ws-management.io</span>
+              <p className="font-bold">{user.username}</p>
+              <span className="w-full text-sm">{user.email}</span>
             </div>
           </div>
           {/*User Actions Body*/}

@@ -1,47 +1,50 @@
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import NewCustomer from "./pages/NewCustomer";
 import PageNotFound from "./pages/PageNotFound";
 import { useCookies } from "react-cookie";
 import Customers from "./pages/Customers";
 import SearchCustomer from "./pages/SearchCustomer";
-import ServiceTypes from "./pages/ServiceTypes";
+import ServiceList from "./pages/ServiceList";
+import { UserProvider } from "./context/UserContext";
+import CustomerDetails from "./pages/CustomerDetails";
+import EditCustomer from "./pages/EditCustomer";
 function App() {
   return (
     <>
-      <ToastContainer position="top-center" />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route path="/" element={<Layout />}>
-              <Route index path="/dashboard" element={<Dashboard />}></Route>
-              <Route index path="/customers" element={<Customers />}></Route>
-              <Route index path="/newcustomer" element={<NewCustomer />}></Route>
-              <Route index path="/searchcustomer" element={<SearchCustomer />}></Route>
-              <Route index path="/servicetypes" element={<ServiceTypes />}></Route>
+      <UserProvider>
+        <ToastContainer position="top-center" />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="/" element={<Dashboard />}></Route>
+              <Route path="/customers" element={<Customers />}></Route>
+              <Route path="/customers/:customerId" element={<CustomerDetails />}></Route>
+              <Route path="/customers/edit/:customerId" element={<EditCustomer />}></Route>
+              <Route path="/customers/new" element={<NewCustomer />}></Route>
+              <Route path="/customers/search" element={<SearchCustomer />}></Route>
+              <Route path="/servicelist" element={<ServiceList />}></Route>
             </Route>
-          </Route>
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </UserProvider>
     </>
   );
 }
 
 const PrivateRoute = () => {
-  // const [token, setToken] = useState(Cookies.get("jwt"));
-  // console.log(token);
   const [cookie, setCookie, removeCookie] = useCookies(["token"]);
   if (!cookie.token) {
     return <Navigate to="/login" />;
   }
-  return <Outlet />;
+  return <Layout />;
 };
 
 export default App;

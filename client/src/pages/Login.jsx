@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { Cookies } from "react-cookie";
+import { useUser, useUserDispatch } from "../context/UserContext";
+import { Link } from "react-router-dom";
 function Login() {
+  const user = useUser();
+  const dispatch = useUserDispatch();
   const [cookie, setCookie, removeCookie] = useCookies(["jwt"]);
   const [inputType, setInputType] = useState("password");
   const navigate = useNavigate();
@@ -27,9 +30,13 @@ function Login() {
           maxAge: 1000 * 60 * 60 * 24 * 30,
           secure: true,
         });
+        dispatch({
+          type: "LOGIN",
+          payload: response.data.foundUser,
+        });
         //Cookies.set("token", response.data.token, { expires: 7, secure: true });
-        toast.success("Login successfull");
-        navigate("/dashboard");
+        toast.success("Giris basarili ");
+        navigate("/");
       } catch (err) {
         console.log(err);
         toast.error(err.response.data.msg);
@@ -76,9 +83,9 @@ function Login() {
           </form>
           <div className="flex justify-center space-x-3 mb-4">
             <p>Üye degil misiniz?</p>
-            <a href="#" className="text-mblue-800 font-semibold">
+            <Link to="/register" className="text-mblue-800 font-semibold">
               Hemen Üye Ol!
-            </a>
+            </Link>
           </div>
           <div className="flex items-center space-x-5 justify-center mb-4">
             <hr className="w-2/5" />
