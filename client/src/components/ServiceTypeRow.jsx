@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 function ServiceTypeRow({ serviceListItem, type, serviceList, setServiceList, setNewRow }) {
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  console.log(serviceListItem);
+  useEffect(() => {
+    setServiceType({ ...serviceListItem });
+  }, []);
   const [serviceType, setServiceType] = useState({});
   const [editMode, setEditMode] = useState(false);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editMode) {
-        const response = await axios.put(`http://localhost:3000/api/services/updateServiceType/${serviceListItem._id}`, { ...serviceType });
+        const response = await axios.put(`${API_URL}/api/services/updateServiceType/${serviceListItem._id}`, { ...serviceType });
         setEditMode(false);
         toast.success("Servis türü güncellendi");
       } else {
-        const response = await axios.post("http://localhost:3000/api/services/newServiceType", { ...serviceType }, { withCredentials: true });
+        const response = await axios.post(`${API_URL}/api/services/newServiceType`, { ...serviceType }, { withCredentials: true });
         e.target.reset();
         setServiceType({});
         setServiceList([...serviceList, { ...response.data.serviceType }]);
@@ -29,7 +35,7 @@ function ServiceTypeRow({ serviceListItem, type, serviceList, setServiceList, se
 
   const deleteServiceType = async (e) => {
     console.log(serviceListItem);
-    const response = await axios.delete(`http://localhost:3000/api/services/deleteServiceType/${serviceListItem._id}`);
+    const response = await axios.delete(`${API_URL}/api/services/deleteServiceType/${serviceListItem._id}`);
     toast.success("Servis Türü silindi");
     setServiceList((prev) => prev.filter((item) => item._id !== serviceListItem._id));
   };

@@ -3,6 +3,7 @@ const newServiceType = async (req, res) => {
   console.log(req.body);
   try {
     const serviceType = await ServiceType.create(req.body);
+
     //res.redirect("/login");
     res.status(201).json({ status: "ok", serviceType });
   } catch (error) {

@@ -3,12 +3,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import ServiceTypeRow from "../components/ServiceTypeRow";
 function ServiceList() {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [serviceList, setServiceList] = useState([]);
   const [newRow, setNewRow] = useState(false);
 
   useEffect(() => {
     const getServiceList = async () => {
-      const response = await axios.get("http://localhost:3000/api/services/getServiceList", { withCredentials: true });
+      const response = await axios.get(`${API_URL}/api/services/getServiceList`, { withCredentials: true });
       console.log(response.data);
       setServiceList([...response.data]);
     };

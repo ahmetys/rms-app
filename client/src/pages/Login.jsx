@@ -6,6 +6,8 @@ import { useCookies } from "react-cookie";
 import { useUser, useUserDispatch } from "../context/UserContext";
 import { Link } from "react-router-dom";
 function Login() {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const user = useUser();
   const dispatch = useUserDispatch();
   const [cookie, setCookie, removeCookie] = useCookies(["jwt"]);
@@ -25,7 +27,7 @@ function Login() {
         password,
       };
       try {
-        const response = await axios.post("http://localhost:3000/login", formData, { withCredentials: true });
+        const response = await axios.post(`${API_URL}/login`, formData, { withCredentials: true });
         setCookie("token", response.data.token, {
           maxAge: 1000 * 60 * 60 * 24 * 30,
           secure: true,

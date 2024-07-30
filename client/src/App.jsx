@@ -13,27 +13,36 @@ import ServiceList from "./pages/ServiceList";
 import { UserProvider } from "./context/UserContext";
 import CustomerDetails from "./pages/CustomerDetails";
 import EditCustomer from "./pages/EditCustomer";
+import Tickets from "./pages/Tickets";
+import NewTicket from "./pages/NewTicket";
+import Definitions from "./pages/Definitions";
+import { DefinitionsProvider } from "./context/DefinitionsContext";
 function App() {
   return (
     <>
       <UserProvider>
-        <ToastContainer position="top-center" />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="/" element={<PrivateRoute />}>
-              <Route path="/" element={<Dashboard />}></Route>
-              <Route path="/customers" element={<Customers />}></Route>
-              <Route path="/customers/:customerId" element={<CustomerDetails />}></Route>
-              <Route path="/customers/edit/:customerId" element={<EditCustomer />}></Route>
-              <Route path="/customers/new" element={<NewCustomer />}></Route>
-              <Route path="/customers/search" element={<SearchCustomer />}></Route>
-              <Route path="/servicelist" element={<ServiceList />}></Route>
-            </Route>
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <DefinitionsProvider>
+          <ToastContainer position="top-center" />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
+              <Route path="/" element={<PrivateRoute />}>
+                <Route path="/" element={<Dashboard />}></Route>
+                <Route path="/tickets" element={<Tickets />}></Route>
+                <Route path="/tickets/new" element={<NewTicket />}></Route>
+                <Route path="/customers" element={<Customers />}></Route>
+                <Route path="/customers/:customerId" element={<CustomerDetails />}></Route>
+                <Route path="/customers/edit/:customerId" element={<EditCustomer />}></Route>
+                <Route path="/customers/new" element={<NewCustomer />}></Route>
+                <Route path="/customers/search" element={<SearchCustomer />}></Route>
+                <Route path="/servicelist" element={<ServiceList />}></Route>
+                <Route path="/definitions" element={<Definitions />}></Route>
+              </Route>
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </DefinitionsProvider>
       </UserProvider>
     </>
   );
@@ -41,9 +50,9 @@ function App() {
 
 const PrivateRoute = () => {
   const [cookie, setCookie, removeCookie] = useCookies(["token"]);
-  if (!cookie.token) {
-    return <Navigate to="/login" />;
-  }
+  // if (!cookie.token) {
+  //   return <Navigate to="/login" />;
+  // }
   return <Layout />;
 };
 

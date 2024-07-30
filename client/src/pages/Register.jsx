@@ -12,6 +12,8 @@ function Register() {
   const [inputType, setInputType] = useState("password");
   const navigate = useNavigate();
   const handleRegisterSubmit = async (e) => {
+    const API_URL = import.meta.env.VITE_API_URL;
+
     e.preventDefault();
     let username = e.target.username.value;
     let email = e.target.email.value;
@@ -28,7 +30,7 @@ function Register() {
             password,
           };
           try {
-            const response = await axios.post("http://localhost:3000/register", formData);
+            const response = await axios.post(`${API_URL}/register`, formData);
             console.log(response);
             toast.success("Registration successfull");
             navigate("/login");

@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 function Customers() {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [customers, setCustomers] = useState([]);
   useEffect(() => {
     const getCustomers = async () => {
-      const response = await axios.get("http://localhost:3000/api/customers/getAllCustomers", { withCredentials: true });
+      const response = await axios.get(`${API_URL}/api/customers/getAllCustomers`, { withCredentials: true });
       console.log(response.data);
       setCustomers([...response.data]);
     };
     getCustomers();
   }, []);
-
+  const deleteCustomer = async (customerId) => {
+    const response = await axios.delete(`${API_URL}/api/customers/deleteCustomer/${customerId}`);
+    console.log(response.data);
+    toast.success("Müsteri silindi");
+    setCustomers((prev) => prev.filter((c) => c._id !== customerId));
+  };
   return (
     <>
-      <section id="servis-fisleri" className="border drop-shadow-xl bg-white rounded mb-5">
+      <section className="border drop-shadow-xl bg-white rounded mb-5">
         {/*Müsteriler Header*/}
         <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center relative">
           <h1 className="col-span-4 text-4xl font-semibold">Müsteriler</h1>
@@ -54,7 +62,7 @@ function Customers() {
                           <td className="px-2 py-3">{customer.customerEmail}</td>
                           <td className="px-2 py-3">{customer.customerAddress}</td>
                           <td className="pl-2 pr-5 py-3">
-                            <div className="flex cursor-pointer space-x-4">
+                            <div className="flex cursor-pointer space-x-1">
                               <Link to={`/customers/${customer._id}`}>
                                 <div className="cursor-pointer  h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
                                   <i className="fa-regular fa-file-lines text-xl" />
@@ -65,7 +73,7 @@ function Customers() {
                                   <i className="fa-regular fa-pen-to-square text-xl" />
                                 </div>
                               </Link>
-                              <div className="cursor-pointer  h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
+                              <div onClick={() => deleteCustomer(customer._id)} className="cursor-pointer  h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
                                 <i className="fa-regular fa-trash-can  text-xl" />
                               </div>
                             </div>
@@ -82,7 +90,6 @@ function Customers() {
         {/* Müsteriler Footer*/}
         <div className="p-5 bg-gray-50 border-t flex justify-end" />
       </section>
-      {/* <Outlet /> */}
     </>
   );
 }

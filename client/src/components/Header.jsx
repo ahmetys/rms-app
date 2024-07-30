@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import { useUser, useUserDispatch } from "../context/UserContext";
 
-function Header() {
+function Header({ setShowSidebar }) {
   const [cookie, setCookie, removeCookie] = useCookies(["token"]);
   const navigate = useNavigate();
   const [actionsPopup, setActionsPopup] = useState("hidden");
@@ -22,11 +22,7 @@ function Header() {
   return (
     <header className="px-2 py-2 md:px-5 md:py-5 mb-5 border cursor-pointer drop-shadow-xl bg-mblue-800 rounded sticky top-0 z-20">
       <div className="flex justify-between lg:justify-end items-center">
-        <a className="text-white cursor-pointer lg:hidden hover:bg-mblue-200 hover:text-mblue-950 duration-300 rounded-full p-2" href="#;">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
-          </svg>
-        </a>
+        <i onClick={() => setShowSidebar(true)} className="fa-solid fa-bars text-white cursor-pointer lg:hidden hover:bg-mblue-200 hover:text-mblue-950 duration-300 rounded-full p-2"></i>
         <div className="flex justify-end space-x-2 items-center">
           <a id="notifications-icon" href="#" className="p-2 duration-300 text-white hover:bg-mblue-200 hover:text-mblue-950 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
