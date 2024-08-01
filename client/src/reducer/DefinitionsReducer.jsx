@@ -16,6 +16,8 @@ export function DefinitionsReducer(state, action) {
     case "DELETE_DEVICE_TYPE":
       console.log(state);
       return state.filter((deviceType) => deviceType._id !== action.payload.deviceTypeId);
+    case "SET_DEVICE_BRANDS":
+      return [...action.payload];
     case "ADD_NEW_DEVICE_BRAND":
       return [...state, action.payload];
     case "SET_DEVICE_BRANDS_BY_DEVICE_ID":
@@ -32,5 +34,7 @@ export function DefinitionsReducer(state, action) {
     case "DELETE_DEVICE_BRAND":
       console.log(state);
       return state.filter((deviceBrand) => deviceBrand._id !== action.payload.deviceBrandId);
+    case "ADD_NEW_DEVICE_MODEL":
+      return [...state, action.payload];
   }
 }

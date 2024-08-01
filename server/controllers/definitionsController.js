@@ -1,4 +1,4 @@
-import { DeviceBrand, DeviceType } from "../models/Definitions.js";
+import { DeviceBrand, DeviceType, DeviceModel } from "../models/Definitions.js";
 const newDeviceType = async (req, res) => {
   console.log("new");
   console.log(req.body);
@@ -88,4 +88,19 @@ const getDeviceBrandsByDeviceType = async (req, res) => {
   const deviceBrands = await DeviceBrand.find({ deviceTypeId: req.params.deviceTypeId });
   res.status(200).json({ succeeded: true, deviceBrands });
 };
-export { newDeviceType, getAllDeviceTypes, updateDeviceType, deleteDeviceType, newDeviceBrand, getAllDeviceBrands, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType };
+
+const newDeviceModel = async (req, res) => {
+  console.log("new");
+  console.log(req.body);
+  try {
+    const deviceModel = await DeviceModel.create(req.body);
+    res.status(201).json({ succeeded: true, deviceModel });
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
+};
+
+export { newDeviceType, getAllDeviceTypes, updateDeviceType, deleteDeviceType, newDeviceBrand, getAllDeviceBrands, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType, newDeviceModel };

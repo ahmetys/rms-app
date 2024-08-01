@@ -36,4 +36,26 @@ const DeviceBrandSchema = new mongoose.Schema(
 
 const DeviceBrand = mongoose.model("DeviceBrand", DeviceBrandSchema);
 
-export { DeviceType, DeviceBrand };
+const DeviceModelSchema = new mongoose.Schema(
+  {
+    deviceBrandId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+    deviceBrand: {
+      type: String,
+      required: true,
+    },
+    deviceModel: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const DeviceModel = mongoose.model("DeviceModel", DeviceModelSchema);
+
+export { DeviceType, DeviceBrand, DeviceModel };
