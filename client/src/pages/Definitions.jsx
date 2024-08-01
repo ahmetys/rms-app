@@ -1,10 +1,10 @@
-import Brands from "../components/Brands";
+import DeviceBrands from "../components/DeviceBrands";
 import DeviceTypes from "../components/DeviceTypes";
 function Definitions() {
   return (
     <section className="grid grid-cols-12 gap-5">
       <DeviceTypes />
-      <Brands />
+      <DeviceBrands />
       <div className="col-span-12 md:col-span-6 p-5 border drop-shadow-xl bg-white rounded">
         <div className="flex items-center justify-between border-b pb-2">
           <h2 className="flex items-center font-semibold">Example Card Header</h2>

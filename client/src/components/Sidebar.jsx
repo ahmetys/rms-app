@@ -9,19 +9,19 @@ function Sidebar({ showSidebar, setShowSidebar }) {
       </div>
       {/*Menu*/}
       <ul className="text-sm lg:text-base space-y-1">
-        <NavLink to={`tickets`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
+        <NavLink onClick={() => setShowSidebar(false)} to={`tickets`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-solid fa-ticket" />
           <span> Servis Fisleri </span>
         </NavLink>
-        <NavLink to={`customers`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
+        <NavLink onClick={() => setShowSidebar(false)} to={`customers`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-solid fa-people-group" />
           <span> Müsteriler </span>
         </NavLink>
-        <NavLink to={`servicelist`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
+        <NavLink onClick={() => setShowSidebar(false)} to={`servicelist`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-solid fa-list-check" />
           <span> Servis Listesi </span>
         </NavLink>
-        <NavLink to={`definitions`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
+        <NavLink onClick={() => setShowSidebar(false)} to={`definitions`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-regular fa-keyboard"></i>
           <span> Tanimlamalar </span>
         </NavLink>

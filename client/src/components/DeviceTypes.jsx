@@ -12,11 +12,13 @@ function DeviceTypes() {
       </div>
       <div>
         <NewDeviceTypeForm />
-        {deviceTypes.map((deviceTypeObject) => {
-          return <DeviceTypeRow key={deviceTypeObject._id} deviceTypeObject={deviceTypeObject} />;
-        })}
+        <div className="max-h-[400px] overflow-y-scroll">
+          {deviceTypes.map((deviceTypeObject) => {
+            return <DeviceTypeRow key={deviceTypeObject._id} deviceTypeObject={deviceTypeObject} />;
+          })}
+        </div>
       </div>
-      <div className="p-5 bg-gray-50 border-t flex justify-end"></div>
+      {/* <div className="p-5 bg-gray-50 border-t flex justify-end"></div> */}
     </div>
   );
 }
