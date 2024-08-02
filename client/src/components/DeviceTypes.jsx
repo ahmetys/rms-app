@@ -2,7 +2,7 @@ import { useDefinitions } from "../context/DefinitionsContext";
 import DeviceTypeRow from "./DeviceTypeRow";
 import NewDeviceTypeForm from "./NewDeviceTypeForm";
 
-function DeviceTypes() {
+function DeviceTypes({ setSelectedDeviceTypeId }) {
   const { deviceTypes } = useDefinitions();
 
   return (
@@ -14,7 +14,7 @@ function DeviceTypes() {
         <NewDeviceTypeForm />
         <div className="max-h-[400px] overflow-y-scroll">
           {deviceTypes.map((deviceTypeObject) => {
-            return <DeviceTypeRow key={deviceTypeObject._id} deviceTypeObject={deviceTypeObject} />;
+            return <DeviceTypeRow key={deviceTypeObject._id} deviceTypeObject={deviceTypeObject} setSelectedDeviceTypeId={setSelectedDeviceTypeId} />;
           })}
         </div>
       </div>

@@ -3,7 +3,7 @@ import { createUser, loginUser } from "../controllers/userController.js";
 import { createCustomer, getAllCustomers, getCustomerById, getCustomerByName, updateCustomer, deleteCustomer } from "../controllers/customerController.js";
 import { newServiceType, getServiceList, updateServiceType, deleteServiceType } from "../controllers/serviceController.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
-import { newDeviceType, getAllDeviceTypes, updateDeviceType, deleteDeviceType, newDeviceBrand, getAllDeviceBrands, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType, newDeviceModel } from "../controllers/definitionsController.js";
+import { newDeviceType, getAllDeviceTypes, updateDeviceType, deleteDeviceType, newDeviceBrand, getAllDeviceBrands, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType, newDeviceModel, getDeviceModelsByDeviceBrand } from "../controllers/definitionsController.js";
 const mainRouter = express.Router();
 
 mainRouter.route("/register").post(createUser);
@@ -28,6 +28,7 @@ mainRouter.route("/api/definitions/updateDeviceBrand/:deviceBrandId").put(authMi
 mainRouter.route("/api/definitions/deleteDeviceBrand/:deviceBrandId").delete(authMiddleware, deleteDeviceBrand);
 mainRouter.route("/api/definitions/getDeviceBrandsByDeviceType/:deviceTypeId").get(authMiddleware, getDeviceBrandsByDeviceType);
 mainRouter.route("/api/definitions/newDeviceModel").post(authMiddleware, newDeviceModel);
+mainRouter.route("/api/definitions/getDeviceModelsByDeviceBrand/:deviceBrandId").get(authMiddleware, getDeviceModelsByDeviceBrand);
 // mainRouter.route("/api/customers/getAllCustomers").get(getAllCustomers);
 
 export default mainRouter;

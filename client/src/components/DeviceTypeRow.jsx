@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useDefinitions } from "../context/DefinitionsContext";
-function DeviceTypeRow({ deviceTypeObject }) {
+function DeviceTypeRow({ deviceTypeObject, setSelectedDeviceTypeId }) {
   const [deviceType, setDeviceType] = useState(deviceTypeObject.deviceType);
   const [showOptions, setShowOptions] = useState(false);
   const [editMode, setEditMod] = useState(false);
@@ -16,25 +16,20 @@ function DeviceTypeRow({ deviceTypeObject }) {
     setEditMod(false);
     setShowOptions(false);
     toast.success("Cihaz Türü güncellendi");
-    // const response = await axios.put(`${API_URL}/api/definitions/updateDeviceType/${deviceTypeObject._id}`, { deviceType }, { withCredentials: true });
-    // if (response.data.succeeded) {
-
-    // dispatch({ type: "UPDATE_DEVICE_TYPE", payload: response.data.deviceType });
-    // setDeviceTypes((prev) =>
-    //   prev.map((deviceType) => {
-    //     if (response.data.deviceType._id === deviceType._id) {
-    //       return response.data.deviceType;
-    //     } else {
-    //       return deviceType;
-    //     }
-    //   })
-    // );
-    // }
+  };
+  const handleClick = (e) => {
+    setSelectedDeviceTypeId(deviceTypeObject._id);
+    console.log(deviceTypeObject._id);
   };
 
   return (
     <form onSubmit={handleOnSubmit} className="flex justify-between items-center px-5 py-2 space-x-2">
-      <input onChange={handleChange} required={true} type="text" disabled={!editMode} className={`w-full h-12 p-3 focus:outline-none rounded-none focus:border-mblue-700 border ${editMode ? "" : "border-none bg-transparent"}`} defaultValue={deviceTypeObject.deviceType} />
+      {editMode && <input onChange={handleChange} required={true} type="text" disabled={!editMode} className={`w-full h-12 p-3 focus:outline-none rounded-none focus:border-mblue-700 border ${editMode ? "" : "border-none bg-transparent"}`} defaultValue={deviceTypeObject.deviceType} />}
+      {!editMode && (
+        <div className="w-full h-12 flex items-center cursor-pointer" onClick={handleClick}>
+          {deviceTypeObject.deviceType}
+        </div>
+      )}
       {editMode && <button className="cursor-pointer w-28 h-12 p-3 text-white bg-mblue-500 hover:bg-mblue-600 duration-300 drop-shadow-xl">Güncelle</button>}
       {!editMode && (
         <div className="rounded-full duration-300 hover:bg-mblue-200 cursor-pointer relative">

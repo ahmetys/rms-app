@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useDefinitions } from "../context/DefinitionsContext";
-function DeviceBrandRow({ deviceBrandObject }) {
-  console.log(deviceBrandObject);
+function DeviceBrandRow({ deviceBrandObject, setSelectedDeviceBrandId }) {
   const [deviceBrand, setDeviceBrand] = useState(deviceBrandObject.deviceBrand);
   const [showOptions, setShowOptions] = useState(false);
   const [editMode, setEditMod] = useState(false);
@@ -19,9 +18,21 @@ function DeviceBrandRow({ deviceBrandObject }) {
     toast.success("Cihaz Türü güncellendi");
   };
 
+  const handleClick = (e) => {
+    setSelectedDeviceBrandId(deviceBrandObject._id);
+    console.log(deviceBrandObject._id);
+  };
+
   return (
     <form onSubmit={handleOnSubmit} className="flex justify-between items-center px-5 py-2 space-x-2">
-      <input onChange={handleChange} required={true} type="text" disabled={!editMode} className={`w-full h-12 p-3 focus:outline-none rounded-none focus:border-mblue-700 border ${editMode ? "" : "border-none bg-transparent"}`} defaultValue={deviceBrandObject.deviceBrand} />
+      {editMode && <input onChange={handleChange} required={true} type="text" disabled={!editMode} className={`w-full h-12 p-3 focus:outline-none rounded-none focus:border-mblue-700 border ${editMode ? "" : "border-none bg-transparent"}`} defaultValue={deviceBrandObject.deviceBrand} />}
+      {!editMode && (
+        <div className="w-full h-12 flex items-center cursor-pointer" onClick={handleClick}>
+          {deviceBrandObject.deviceBrand}
+        </div>
+      )}
+
+      {/* <input onChange={handleChange} required={true} type="text" disabled={!editMode} className={`w-full h-12 p-3 focus:outline-none rounded-none focus:border-mblue-700 border ${editMode ? "" : "border-none bg-transparent"}`} defaultValue={deviceBrandObject.deviceBrand} /> */}
       {editMode && <button className="cursor-pointer w-28 h-12 p-3 text-white bg-mblue-500 hover:bg-mblue-600 duration-300 drop-shadow-xl">Güncelle</button>}
       {!editMode && (
         <div className="rounded-full duration-300 hover:bg-mblue-200 cursor-pointer relative">

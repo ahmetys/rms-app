@@ -4,13 +4,18 @@ import DeviceModelRow from "./DeviceModelRow";
 import DeviceBrandSelect from "./DeviceBrandSelect";
 import NewDeviceModelForm from "./NewDeviceModelForm";
 
-function DeviceModels() {
+function DeviceModels({ selectedDeviceBrandId }) {
   const [deviceModel, setDeviceModel] = useState({});
-  const { deviceModels, getAllDeviceBrands } = useDefinitions();
+  const { deviceModels, getDeviceModelsByDeviceBrand } = useDefinitions();
 
-  // useEffect(() => {
-  //   getAllDeviceBrands();
-  // }, []);
+  useEffect(() => {
+    console.log("state changed");
+    if (selectedDeviceBrandId !== undefined) {
+      console.log(selectedDeviceBrandId);
+
+      getDeviceModelsByDeviceBrand(selectedDeviceBrandId);
+    }
+  }, [selectedDeviceBrandId]);
   return (
     <div className="col-span-12 md:col-span-4 border drop-shadow-xl bg-white rounded  ">
       <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center">

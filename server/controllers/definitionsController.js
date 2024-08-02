@@ -103,4 +103,11 @@ const newDeviceModel = async (req, res) => {
   }
 };
 
-export { newDeviceType, getAllDeviceTypes, updateDeviceType, deleteDeviceType, newDeviceBrand, getAllDeviceBrands, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType, newDeviceModel };
+const getDeviceModelsByDeviceBrand = async (req, res) => {
+  console.log(req.body);
+  console.log(req.params);
+  const deviceModels = await DeviceModel.find({ deviceBrandId: req.params.deviceBrandId });
+  res.status(200).json({ succeeded: true, deviceModels });
+};
+
+export { newDeviceType, getAllDeviceTypes, updateDeviceType, deleteDeviceType, newDeviceBrand, getAllDeviceBrands, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType, newDeviceModel, getDeviceModelsByDeviceBrand };

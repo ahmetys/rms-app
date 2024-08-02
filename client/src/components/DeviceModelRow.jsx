@@ -2,7 +2,6 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useDefinitions } from "../context/DefinitionsContext";
 function DeviceModelRow({ deviceModelObject }) {
-  console.log(deviceModelObject);
   const [deviceModel, setDeviceModel] = useState(deviceModelObject.deviceModel);
   const [showOptions, setShowOptions] = useState(false);
   const [editMode, setEditMod] = useState(false);

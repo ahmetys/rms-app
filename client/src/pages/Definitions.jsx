@@ -1,12 +1,16 @@
+import { useState } from "react";
 import DeviceBrands from "../components/DeviceBrands";
 import DeviceModels from "../components/DeviceModels";
 import DeviceTypes from "../components/DeviceTypes";
 function Definitions() {
+  const [selectedDeviceTypeId, setSelectedDeviceTypeId] = useState();
+  const [selectedDeviceBrandId, setSelectedDeviceBrandId] = useState();
+
   return (
     <section className="grid grid-cols-12 gap-5">
-      <DeviceTypes />
-      <DeviceBrands />
-      <DeviceModels />
+      <DeviceTypes setSelectedDeviceTypeId={setSelectedDeviceTypeId} />
+      <DeviceBrands selectedDeviceTypeId={selectedDeviceTypeId} setSelectedDeviceTypeId={setSelectedDeviceTypeId} setSelectedDeviceBrandId={setSelectedDeviceBrandId} />
+      <DeviceModels selectedDeviceBrandId={selectedDeviceBrandId} />
       <div className="col-span-12 md:col-span-6 p-5 border drop-shadow-xl bg-white rounded">
         <div className="flex items-center justify-between border-b pb-2">
           <h2 className="flex items-center font-semibold">Example Card Header</h2>

@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 import { useDefinitions } from "../context/DefinitionsContext";
 function NewDeviceModelForm({ deviceModel, setDeviceModel }) {
   const { addNewDeviceModel } = useDefinitions();
-  console.log(deviceModel);
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(deviceModel);
