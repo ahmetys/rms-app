@@ -8,8 +8,8 @@ function Definitions() {
 
   return (
     <section className="grid grid-cols-12 gap-5">
-      <DeviceTypes setSelectedDeviceTypeId={setSelectedDeviceTypeId} />
-      <DeviceBrands selectedDeviceTypeId={selectedDeviceTypeId} setSelectedDeviceTypeId={setSelectedDeviceTypeId} setSelectedDeviceBrandId={setSelectedDeviceBrandId} />
+      <DeviceTypes selectedDeviceTypeId={selectedDeviceTypeId} setSelectedDeviceTypeId={setSelectedDeviceTypeId} />
+      <DeviceBrands selectedDeviceTypeId={selectedDeviceTypeId} selectedDeviceBrandId={selectedDeviceBrandId} setSelectedDeviceBrandId={setSelectedDeviceBrandId} />
       <DeviceModels selectedDeviceBrandId={selectedDeviceBrandId} />
       <div className="col-span-12 md:col-span-6 p-5 border drop-shadow-xl bg-white rounded">
         <div className="flex items-center justify-between border-b pb-2">

@@ -1,22 +1,23 @@
 import { toast } from "react-toastify";
 import { useDefinitions } from "../context/DefinitionsContext";
-function NewDeviceModelForm({ deviceModel, setDeviceModel }) {
+import { useState } from "react";
+function NewDeviceModelForm({ selectedDeviceBrandId }) {
+  const [deviceModel, setDeviceModel] = useState("");
   const { addNewDeviceModel } = useDefinitions();
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(deviceModel);
-    if (deviceModel.deviceModel && deviceModel.deviceBrandId) {
-      addNewDeviceModel(deviceModel);
+    if (selectedDeviceBrandId !== undefined) {
+      addNewDeviceModel({ deviceBrandId: selectedDeviceBrandId, deviceModel: deviceModel });
       setDeviceModel({ ...deviceModel, deviceModel: "" });
-      console.log(e.target.elements);
       e.target.elements.deviceModel.value = "";
       toast.success("Cihaz Markasi eklendi");
     } else {
-      toast.error("Cihaz markasini seciniz");
+      toast.warning("Bir cihaz markasi secin");
     }
   };
   const handleOnChange = (e) => {
-    setDeviceModel({ ...deviceModel, deviceModel: e.target.value });
+    setDeviceModel(e.target.value);
   };
   return (
     <form onSubmit={handleOnSubmit} className=" px-5 py-2">

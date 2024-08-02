@@ -68,13 +68,39 @@ export function DefinitionsProvider({ children }) {
     return dispatchDeviceModels({ type: "ADD_NEW_DEVICE_MODEL", payload: response.data.deviceModel });
   };
 
+  const updateDeviceModel = async (deviceModelId, deviceModel) => {
+    const response = await axios.put(`${API_URL}/api/definitions/updateDeviceModel/${deviceModelId}`, { deviceModel }, { withCredentials: true });
+    return dispatchDeviceModels({ type: "UPDATE_DEVICE_MODEL", payload: response.data.deviceModel });
+  };
+
+  const deleteDeviceModel = async (deviceModelId) => {
+    const response = await axios.delete(`${API_URL}/api/definitions/deleteDeviceModel/${deviceModelId}`);
+    return dispatchDeviceModels({ type: "DELETE_DEVICE_MODEL", payload: { deviceModelId: deviceModelId } });
+  };
+
   const getDeviceModelsByDeviceBrand = async (deviceBrandId) => {
     const response = await axios.get(`${API_URL}/api/definitions/getDeviceModelsByDeviceBrand/${deviceBrandId}`, { withCredentials: true });
     console.log(response.data);
     dispatchDeviceModels({ type: "SET_DEVICE_MODELS_BY_DEVICE_BRAND", payload: response.data.deviceModels });
   };
 
-  const values = { deviceTypes, addNewDeviceType, updateDeviceType, deleteDeviceType, deviceBrands, getAllDeviceBrands, addNewDeviceBrand, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType, deviceModels, addNewDeviceModel, getDeviceModelsByDeviceBrand };
+  const values = {
+    deviceTypes,
+    addNewDeviceType,
+    updateDeviceType,
+    deleteDeviceType,
+    deviceBrands,
+    getAllDeviceBrands,
+    addNewDeviceBrand,
+    updateDeviceBrand,
+    deleteDeviceBrand,
+    getDeviceBrandsByDeviceType,
+    deviceModels,
+    addNewDeviceModel,
+    updateDeviceModel,
+    deleteDeviceModel,
+    getDeviceModelsByDeviceBrand,
+  };
   return <DefinitionsContext.Provider value={values}>{children}</DefinitionsContext.Provider>;
 }
 

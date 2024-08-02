@@ -20,10 +20,6 @@ const DeviceBrandSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
-    deviceType: {
-      type: String,
-      required: true,
-    },
     deviceBrand: {
       type: String,
       required: true,
@@ -40,10 +36,6 @@ const DeviceModelSchema = new mongoose.Schema(
   {
     deviceBrandId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
-    },
-    deviceBrand: {
-      type: String,
       required: true,
     },
     deviceModel: {

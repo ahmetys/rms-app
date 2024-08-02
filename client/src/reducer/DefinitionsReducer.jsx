@@ -36,7 +36,18 @@ export function DefinitionsReducer(state, action) {
       return state.filter((deviceBrand) => deviceBrand._id !== action.payload.deviceBrandId);
     case "ADD_NEW_DEVICE_MODEL":
       return [...state, action.payload];
-
+    case "UPDATE_DEVICE_MODEL":
+      console.log(action.payload);
+      return state.map((deviceModel) => {
+        if (action.payload._id === deviceModel._id) {
+          return action.payload;
+        } else {
+          return deviceModel;
+        }
+      });
+    case "DELETE_DEVICE_MODEL":
+      console.log(state);
+      return state.filter((deviceModel) => deviceModel._id !== action.payload.deviceModelId);
     case "SET_DEVICE_MODELS_BY_DEVICE_BRAND":
       return [...action.payload];
   }

@@ -2,7 +2,7 @@ import { useDefinitions } from "../context/DefinitionsContext";
 import DeviceTypeRow from "./DeviceTypeRow";
 import NewDeviceTypeForm from "./NewDeviceTypeForm";
 
-function DeviceTypes({ setSelectedDeviceTypeId }) {
+function DeviceTypes({ selectedDeviceTypeId, setSelectedDeviceTypeId }) {
   const { deviceTypes } = useDefinitions();
 
   return (
@@ -14,11 +14,10 @@ function DeviceTypes({ setSelectedDeviceTypeId }) {
         <NewDeviceTypeForm />
         <div className="max-h-[400px] overflow-y-scroll">
           {deviceTypes.map((deviceTypeObject) => {
-            return <DeviceTypeRow key={deviceTypeObject._id} deviceTypeObject={deviceTypeObject} setSelectedDeviceTypeId={setSelectedDeviceTypeId} />;
+            return <DeviceTypeRow key={deviceTypeObject._id} deviceTypeObject={deviceTypeObject} selectedDeviceTypeId={selectedDeviceTypeId} setSelectedDeviceTypeId={setSelectedDeviceTypeId} />;
           })}
         </div>
       </div>
-      {/* <div className="p-5 bg-gray-50 border-t flex justify-end"></div> */}
     </div>
   );
 }

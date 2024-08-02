@@ -103,6 +103,29 @@ const newDeviceModel = async (req, res) => {
   }
 };
 
+const updateDeviceModel = async (req, res) => {
+  try {
+    console.log("update req");
+    console.log(req.body);
+    const deviceModel = await DeviceModel.findById(req.params.deviceModelId);
+    console.log(deviceModel);
+    deviceModel.deviceModel = req.body.deviceModel;
+    deviceModel.save();
+    console.log("updated");
+    console.log(deviceModel);
+    res.status(200).json({ succeeded: true, deviceModel });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteDeviceModel = async (req, res) => {
+  try {
+    await DeviceModel.findOneAndDelete({ _id: req.params.deviceModelId });
+    res.status(200).json({ succeeded: true });
+  } catch (error) {}
+};
+
 const getDeviceModelsByDeviceBrand = async (req, res) => {
   console.log(req.body);
   console.log(req.params);
@@ -110,4 +133,4 @@ const getDeviceModelsByDeviceBrand = async (req, res) => {
   res.status(200).json({ succeeded: true, deviceModels });
 };
 
-export { newDeviceType, getAllDeviceTypes, updateDeviceType, deleteDeviceType, newDeviceBrand, getAllDeviceBrands, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType, newDeviceModel, getDeviceModelsByDeviceBrand };
+export { newDeviceType, getAllDeviceTypes, updateDeviceType, deleteDeviceType, newDeviceBrand, getAllDeviceBrands, updateDeviceBrand, deleteDeviceBrand, getDeviceBrandsByDeviceType, newDeviceModel, updateDeviceModel, deleteDeviceModel, getDeviceModelsByDeviceBrand };

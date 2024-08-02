@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDefinitions } from "../context/DefinitionsContext";
 import DeviceModelRow from "./DeviceModelRow";
-import DeviceBrandSelect from "./DeviceBrandSelect";
 import NewDeviceModelForm from "./NewDeviceModelForm";
 
 function DeviceModels({ selectedDeviceBrandId }) {
-  const [deviceModel, setDeviceModel] = useState({});
   const { deviceModels, getDeviceModelsByDeviceBrand } = useDefinitions();
 
   useEffect(() => {
@@ -22,8 +20,8 @@ function DeviceModels({ selectedDeviceBrandId }) {
         <h1 className="col-span-4 text-xl font-semibold">Cihaz Modelleri</h1>
       </div>
       <div>
-        <DeviceBrandSelect deviceModel={deviceModel} setDeviceModel={setDeviceModel} />
-        <NewDeviceModelForm deviceModel={deviceModel} setDeviceModel={setDeviceModel} />
+        {/* <DeviceBrandSelect deviceModel={deviceModel} setDeviceModel={setDeviceModel} /> */}
+        <NewDeviceModelForm selectedDeviceBrandId={selectedDeviceBrandId} />
         <div className=" max-h-[400px] overflow-y-scroll">
           {deviceModels.map((deviceModelObject) => {
             return <DeviceModelRow key={deviceModelObject._id} deviceModelObject={deviceModelObject} />;

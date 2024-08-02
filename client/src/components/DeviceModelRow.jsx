@@ -19,11 +19,11 @@ function DeviceModelRow({ deviceModelObject }) {
   };
 
   return (
-    <form onSubmit={handleOnSubmit} className="flex justify-between items-center px-5 py-2 space-x-2">
-      <input onChange={handleChange} required={true} type="text" disabled={!editMode} className={`w-full h-12 p-3 focus:outline-none rounded-none focus:border-mblue-700 border ${editMode ? "" : "border-none bg-transparent"}`} defaultValue={deviceModelObject.deviceModel} />
+    <form onSubmit={handleOnSubmit} className="flex justify-between items-center px-5 py-2 space-x-2 duration-300 hover:bg-mblue-200 cursor-pointer">
+      <input onChange={handleChange} required={true} type="text" disabled={!editMode} className={`w-full h-12 p-3 focus:outline-none  cursor-pointer rounded-none  focus:border-mblue-700 border ${editMode ? "" : "border-none bg-transparent"}`} defaultValue={deviceModelObject.deviceModel} />
       {editMode && <button className="cursor-pointer w-28 h-12 p-3 text-white bg-mblue-500 hover:bg-mblue-600 duration-300 drop-shadow-xl">Güncelle</button>}
       {!editMode && (
-        <div className="rounded-full duration-300 hover:bg-mblue-200 cursor-pointer relative">
+        <div className="rounded-full duration-300 hover:bg-mblue-500 cursor-pointer relative">
           <i onClick={() => setShowOptions(!showOptions)} className="fa-solid fa-ellipsis-vertical w-12 h-12 flex items-center justify-center"></i>
           <div className={`${showOptions ? "" : "hidden"} absolute bg-white right-0 min-w-36 z-50 border rounded drop-shadow-xl`}>
             <ul>
