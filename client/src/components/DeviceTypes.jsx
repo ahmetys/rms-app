@@ -12,7 +12,7 @@ function DeviceTypes({ selectedDeviceTypeId, setSelectedDeviceTypeId }) {
       </div>
       <div>
         <NewDeviceTypeForm />
-        <div className="max-h-[400px] overflow-y-scroll">
+        <div className="max-h-[400px] overflow-y-scroll pb-24 no-scrollbar">
           {deviceTypes.map((deviceTypeObject) => {
             return <DeviceTypeRow key={deviceTypeObject._id} deviceTypeObject={deviceTypeObject} selectedDeviceTypeId={selectedDeviceTypeId} setSelectedDeviceTypeId={setSelectedDeviceTypeId} />;
           })}

@@ -15,7 +15,7 @@ import CustomerDetails from "./pages/CustomerDetails";
 import EditCustomer from "./pages/EditCustomer";
 import Tickets from "./pages/Tickets";
 import NewTicket from "./pages/NewTicket";
-import Definitions from "./pages/Definitions";
+import DeviceDefinitions from "./pages/DeviceDefinitions";
 import { DefinitionsProvider } from "./context/DefinitionsContext";
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
                 <Route path="/customers/new" element={<NewCustomer />}></Route>
                 <Route path="/customers/search" element={<SearchCustomer />}></Route>
                 <Route path="/servicelist" element={<ServiceList />}></Route>
-                <Route path="/definitions" element={<Definitions />}></Route>
+                <Route path="/deviceDefinitions" element={<DeviceDefinitions />}></Route>
               </Route>
               <Route path="*" element={<PageNotFound />} />
             </Routes>

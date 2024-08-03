@@ -22,7 +22,7 @@ function DeviceModels({ selectedDeviceBrandId }) {
       <div>
         {/* <DeviceBrandSelect deviceModel={deviceModel} setDeviceModel={setDeviceModel} /> */}
         <NewDeviceModelForm selectedDeviceBrandId={selectedDeviceBrandId} />
-        <div className=" max-h-[400px] overflow-y-scroll">
+        <div className=" max-h-[400px] overflow-y-scroll pb-24 no-scrollbar">
           {deviceModels.map((deviceModelObject) => {
             return <DeviceModelRow key={deviceModelObject._id} deviceModelObject={deviceModelObject} />;
           })}

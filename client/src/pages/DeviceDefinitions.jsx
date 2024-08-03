@@ -2,7 +2,7 @@ import { useState } from "react";
 import DeviceBrands from "../components/DeviceBrands";
 import DeviceModels from "../components/DeviceModels";
 import DeviceTypes from "../components/DeviceTypes";
-function Definitions() {
+function DeviceDefinitions() {
   const [selectedDeviceTypeId, setSelectedDeviceTypeId] = useState();
   const [selectedDeviceBrandId, setSelectedDeviceBrandId] = useState();
 
@@ -135,4 +135,4 @@ function Definitions() {
   );
 }
 
-export default Definitions;
+export default DeviceDefinitions;

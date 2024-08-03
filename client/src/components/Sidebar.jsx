@@ -21,9 +21,9 @@ function Sidebar({ showSidebar, setShowSidebar }) {
           <i className="fa-solid fa-list-check" />
           <span> Servis Listesi </span>
         </NavLink>
-        <NavLink onClick={() => setShowSidebar(false)} to={`definitions`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
+        <NavLink onClick={() => setShowSidebar(false)} to={`deviceDefinitions`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-regular fa-keyboard"></i>
-          <span> Tanimlamalar </span>
+          <span> Cihaz Tanimlamalari </span>
         </NavLink>
 
         {/* <li>

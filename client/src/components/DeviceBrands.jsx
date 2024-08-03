@@ -17,7 +17,7 @@ function DeviceBrands({ selectedDeviceTypeId, selectedDeviceBrandId, setSelected
       </div>
       <div>
         <NewDeviceBrandForm selectedDeviceTypeId={selectedDeviceTypeId} />
-        <div className=" max-h-[400px] overflow-y-scroll">
+        <div className=" max-h-[400px] overflow-y-scroll pb-24 no-scrollbar">
           {deviceBrands.map((deviceBrandObject) => {
             return <DeviceBrandRow key={deviceBrandObject._id} deviceBrandObject={deviceBrandObject} selectedDeviceBrandId={selectedDeviceBrandId} setSelectedDeviceBrandId={setSelectedDeviceBrandId} />;
           })}
