@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useDefinitions } from "../context/DefinitionsContext";
-function DeviceBrandRow({ deviceBrandObject, selectedDeviceBrandId, setSelectedDeviceBrandId }) {
+function DeviceBrandRow({ deviceBrandObject, selectedDeviceTypeId, selectedDeviceBrandId, setSelectedDeviceBrandId }) {
   const [deviceBrand, setDeviceBrand] = useState(deviceBrandObject.deviceBrand);
   const [showOptions, setShowOptions] = useState(false);
   const [editMode, setEditMod] = useState(false);
@@ -12,7 +12,7 @@ function DeviceBrandRow({ deviceBrandObject, selectedDeviceBrandId, setSelectedD
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    updateDeviceBrand(deviceBrandObject._id, deviceBrand);
+    updateDeviceBrand({ deviceTypeId: selectedDeviceTypeId, deviceBrandId: deviceBrandObject._id, deviceBrand: deviceBrand });
     setEditMod(false);
     setShowOptions(false);
     toast.success("Cihaz Türü güncellendi");
@@ -42,7 +42,7 @@ function DeviceBrandRow({ deviceBrandObject, selectedDeviceBrandId, setSelectedD
               <li onClick={() => setEditMod(true)} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
                 Düzenle
               </li>
-              <li onClick={() => deleteDeviceBrand(deviceBrandObject._id)} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
+              <li onClick={() => deleteDeviceBrand({ deviceTypeId: selectedDeviceTypeId, deviceBrandId: deviceBrandObject._id })} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
                 Sil
               </li>
             </ul>

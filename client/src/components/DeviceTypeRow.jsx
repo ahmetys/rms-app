@@ -12,7 +12,7 @@ function DeviceTypeRow({ deviceTypeObject, selectedDeviceTypeId, setSelectedDevi
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    updateDeviceType(deviceTypeObject._id, deviceType);
+    updateDeviceType({ deviceTypeId: deviceTypeObject._id, deviceType: deviceType });
     setEditMod(false);
     setShowOptions(false);
     toast.success("Cihaz Türü güncellendi");

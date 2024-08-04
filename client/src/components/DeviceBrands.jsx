@@ -4,12 +4,17 @@ import DeviceBrandRow from "./DeviceBrandRow";
 import NewDeviceBrandForm from "./NewDeviceBrandForm";
 
 function DeviceBrands({ selectedDeviceTypeId, selectedDeviceBrandId, setSelectedDeviceBrandId }) {
-  const { deviceBrands, getDeviceBrandsByDeviceType } = useDefinitions();
+  const { deviceDefinitions } = useDefinitions();
+  const [deviceBrands, setDeviceBrands] = useState([]);
   useEffect(() => {
     if (selectedDeviceTypeId !== undefined) {
-      getDeviceBrandsByDeviceType(selectedDeviceTypeId);
+      deviceDefinitions.map((deviceType) => {
+        if (deviceType._id === selectedDeviceTypeId) {
+          setDeviceBrands([...deviceType.deviceBrands]);
+        }
+      });
     }
-  }, [selectedDeviceTypeId]);
+  }, [selectedDeviceTypeId, deviceDefinitions]);
   return (
     <div className="col-span-12 md:col-span-4 border drop-shadow-xl bg-white rounded  ">
       <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center">
@@ -19,7 +24,7 @@ function DeviceBrands({ selectedDeviceTypeId, selectedDeviceBrandId, setSelected
         <NewDeviceBrandForm selectedDeviceTypeId={selectedDeviceTypeId} />
         <div className=" max-h-[400px] overflow-y-scroll pb-24 no-scrollbar">
           {deviceBrands.map((deviceBrandObject) => {
-            return <DeviceBrandRow key={deviceBrandObject._id} deviceBrandObject={deviceBrandObject} selectedDeviceBrandId={selectedDeviceBrandId} setSelectedDeviceBrandId={setSelectedDeviceBrandId} />;
+            return <DeviceBrandRow key={deviceBrandObject._id} deviceBrandObject={deviceBrandObject} selectedDeviceTypeId={selectedDeviceTypeId} selectedDeviceBrandId={selectedDeviceBrandId} setSelectedDeviceBrandId={setSelectedDeviceBrandId} />;
           })}
         </div>
       </div>

@@ -1,14 +1,14 @@
 import { toast } from "react-toastify";
 import { useDefinitions } from "../context/DefinitionsContext";
 import { useState } from "react";
-function NewDeviceModelForm({ selectedDeviceBrandId }) {
+function NewDeviceModelForm({ selectedDeviceTypeId, selectedDeviceBrandId }) {
   const [deviceModel, setDeviceModel] = useState("");
   const { addNewDeviceModel } = useDefinitions();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (selectedDeviceBrandId !== undefined) {
-      addNewDeviceModel({ deviceBrandId: selectedDeviceBrandId, deviceModel: deviceModel });
+      addNewDeviceModel({ deviceTypeId: selectedDeviceTypeId, deviceBrandId: selectedDeviceBrandId, deviceModel: deviceModel });
       setDeviceModel({ ...deviceModel, deviceModel: "" });
       e.target.elements.deviceModel.value = "";
       toast.success("Cihaz Markasi eklendi");

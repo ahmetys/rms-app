@@ -1,7 +1,16 @@
 export function DefinitionsReducer(state, action) {
   switch (action.type) {
-    case "SET_DEVICE_TYPES":
+    case "GET_ALL_DEVICE_DEFINITIONS":
       return [...action.payload];
+    case "ADDED_NEW_DEFINITION":
+      console.log(action.payload);
+
+      return state.map((def) => {
+        if (def._id === action.payload._id) {
+          return action.payload;
+        }
+        return def;
+      });
     case "ADD_NEW_DEVICE_TYPE":
       return [...state, action.payload];
     case "UPDATE_DEVICE_TYPE":
@@ -21,19 +30,34 @@ export function DefinitionsReducer(state, action) {
     case "ADD_NEW_DEVICE_BRAND":
       return [...state, action.payload];
     case "SET_DEVICE_BRANDS_BY_DEVICE_TYPE":
-      return [...action.payload];
+      return state;
     case "UPDATE_DEVICE_BRAND":
       console.log(action.payload);
-      return state.map((deviceBrand) => {
-        if (action.payload._id === deviceBrand._id) {
+      return state.map((deviceType) => {
+        if (action.payload._id === deviceType._id) {
           return action.payload;
         } else {
-          return deviceBrand;
+          return deviceType;
         }
       });
     case "DELETE_DEVICE_BRAND":
+      state = state.map((deviceType) => {
+        if (deviceType._id === action.payload.deviceTypeId) {
+          const newDeviceBrands = deviceType.deviceBrands.filter((deviceBrand) => {
+            if (deviceBrand._id !== action.payload.deviceBrandId) {
+              return deviceBrand;
+            }
+          });
+          deviceType.deviceBrands = newDeviceBrands;
+          return deviceType;
+        } else {
+          return deviceType;
+        }
+      });
+
       console.log(state);
-      return state.filter((deviceBrand) => deviceBrand._id !== action.payload.deviceBrandId);
+      return state;
+
     case "ADD_NEW_DEVICE_MODEL":
       return [...state, action.payload];
     case "UPDATE_DEVICE_MODEL":

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useDefinitions } from "../context/DefinitionsContext";
-function DeviceModelRow({ deviceModelObject }) {
+function DeviceModelRow({ selectedDeviceTypeId, selectedDeviceBrandId, deviceModelObject }) {
   const [deviceModel, setDeviceModel] = useState(deviceModelObject.deviceModel);
   const [showOptions, setShowOptions] = useState(false);
   const [editMode, setEditMod] = useState(false);
@@ -30,7 +30,7 @@ function DeviceModelRow({ deviceModelObject }) {
               <li onClick={() => setEditMod(true)} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
                 Düzenle
               </li>
-              <li onClick={() => deleteDeviceModel(deviceModelObject._id)} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
+              <li onClick={() => deleteDeviceModel({ deviceTypeId: selectedDeviceTypeId, deviceBrandId: deviceModelObject._id, deviceModelId: deviceModelObject._id })} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
                 Sil
               </li>
             </ul>

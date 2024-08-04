@@ -1,5 +1,26 @@
 import mongoose from "mongoose";
 
+const DeviceDefinitionSchema = new mongoose.Schema({
+  deviceType: {
+    type: String,
+  },
+  deviceBrands: [
+    {
+      deviceBrand: {
+        type: String,
+      },
+      deviceModels: [
+        {
+          deviceModel: {
+            type: String,
+          },
+        },
+      ],
+    },
+  ],
+});
+const DeviceDefinition = mongoose.model("DeviceDefinition", DeviceDefinitionSchema);
+
 const DeviceTypeSchema = new mongoose.Schema(
   {
     deviceType: {
@@ -50,4 +71,4 @@ const DeviceModelSchema = new mongoose.Schema(
 
 const DeviceModel = mongoose.model("DeviceModel", DeviceModelSchema);
 
-export { DeviceType, DeviceBrand, DeviceModel };
+export { DeviceDefinition, DeviceType, DeviceBrand, DeviceModel };
