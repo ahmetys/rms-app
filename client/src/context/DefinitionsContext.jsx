@@ -73,7 +73,7 @@ export function DefinitionsProvider({ children }) {
   };
 
   const deleteDeviceModel = async (deviceModel) => {
-    const response = await axios.delete(`${API_URL}/api/deviceDefinitions/deleteDeviceModel/${deviceModelId}`);
+    const response = await axios.delete(`${API_URL}/api/deviceDefinitions/deleteDeviceModel/${deviceModel.deviceModelId}`);
     return dispatchDeviceModels({ type: "DELETE_DEVICE_MODEL", payload: { ...deviceModel } });
   };
 
