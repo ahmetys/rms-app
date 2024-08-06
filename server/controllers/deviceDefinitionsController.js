@@ -164,12 +164,14 @@ const deleteDeviceModel = async (req, res) => {
     // await DeviceModel.findOneAndDelete({ _id: req.params.deviceModelId });
     const deviceModel = await DeviceDefinition.find({ "deviceBrands.deviceModels._id": req.params.deviceModelId });
 
-    deviceModel.map((type) => {
+    deviceModel = deviceModel.map((type) => {
       type.deviceBrands.map((brand) => {
+        console.log(brand.deviceModels);
         brand.deviceModels.filter((model) => {
           console.log(model);
           return model._id !== req.params.deviceModelId;
         });
+        console.log(brand.deviceModels);
       });
     });
     deviceModel.save();
