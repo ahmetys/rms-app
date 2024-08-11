@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDefinitions } from "../context/DefinitionsContext";
 const initialDeviceTypes = ["Cep Telefonu", "Bilgisayar", "Tablet", "Oyun Konsolu"];
 const initialDeviceBrands = ["Apple", "Samsung", "Huawei", "Xiaomi"];
 const initialDeviceModels = ["iPhone 15 Pro Max", "iPhone 15 Pro", "iPhone 15 Plus"];
@@ -16,6 +17,9 @@ function NewTicket() {
   const [deviceModelPopup, setDeviceModelPopup] = useState(false);
   const [serviceData, setServiceData] = useState({ serviceTypes: [], orderedParts: [], accessories: [] });
   const [serviceTypePopup, setServiceTypePopup] = useState(false);
+  const { deviceDefinitions } = useDefinitions();
+  console.log(deviceDefinitions);
+
   const navigate = useNavigate();
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -170,10 +174,10 @@ function NewTicket() {
                 </div>
                 <div className="relative">
                   <ul className={`${deviceTypePopup ? "" : "hidden"} absolute bg-white border-b border-x cursor-pointer drop-shadow-xl w-full`}>
-                    {initialDeviceTypes.map((deviceType, index) => {
+                    {deviceDefinitions.map((deviceType) => {
                       return (
-                        <li key={index} onClick={() => handleDeviceTypeSelect(deviceType)} className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">
-                          {deviceType}
+                        <li key={deviceType._id} onClick={() => handleDeviceTypeSelect(deviceType.deviceType)} className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">
+                          {deviceType.deviceType}
                         </li>
                       );
                     })}

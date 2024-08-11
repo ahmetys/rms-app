@@ -68,13 +68,13 @@ export function DefinitionsProvider({ children }) {
   };
 
   const updateDeviceModel = async (deviceModelId, deviceModel) => {
-    const response = await axios.put(`${API_URL}/api/definitions/updateDeviceModel/${deviceModelId}`, { deviceModel }, { withCredentials: true });
-    return dispatchDeviceModels({ type: "UPDATE_DEVICE_MODEL", payload: response.data.deviceModel });
+    const response = await axios.put(`${API_URL}/api/deviceDefinitions/updateDeviceModel/${deviceModelId}`, { deviceModel }, { withCredentials: true });
+    return dispatch({ type: "UPDATE_DEVICE_MODEL", payload: response.data.deviceModel });
   };
 
   const deleteDeviceModel = async (deviceModel) => {
-    const response = await axios.delete(`${API_URL}/api/deviceDefinitions/deleteDeviceModel/${deviceModel.deviceModelId}`);
-    return dispatchDeviceModels({ type: "DELETE_DEVICE_MODEL", payload: { ...deviceModel } });
+    const response = await axios.delete(`${API_URL}/api/deviceDefinitions/deleteDeviceModel/${deviceModel.deviceTypeId}/${deviceModel.deviceBrandId}/${deviceModel.deviceModelId}`);
+    return dispatch({ type: "DELETE_DEVICE_MODEL", payload: { ...deviceModel } });
   };
 
   const getDeviceModelsByDeviceBrand = async (deviceBrandId) => {

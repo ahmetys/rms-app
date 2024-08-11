@@ -48,8 +48,8 @@ mainRouter.route("/api/definitions/getDeviceBrandsByDeviceType/:deviceTypeId").g
 // mainRouter.route("/api/definitions/getAllDeviceBrands").get(authMiddleware, getAllDeviceBrands);
 //DEVICE MODEL CRUD
 mainRouter.route("/api/deviceDefinitions/newDeviceModel").post(authMiddleware, newDeviceModel);
-mainRouter.route("/api/definitions/updateDeviceModel/:deviceModelId").put(authMiddleware, updateDeviceModel);
-mainRouter.route("/api/deviceDefinitions/deleteDeviceModel/:deviceModelId").delete(authMiddleware, deleteDeviceModel);
+mainRouter.route("/api/deviceDefinitions/updateDeviceModel/:deviceModelId").put(authMiddleware, updateDeviceModel);
+mainRouter.route("/api/deviceDefinitions/deleteDeviceModel/:deviceTypeId/:deviceBrandId/:deviceModelId").delete(authMiddleware, deleteDeviceModel);
 mainRouter.route("/api/definitions/getDeviceModelsByDeviceBrand/:deviceBrandId").get(authMiddleware, getDeviceModelsByDeviceBrand);
 // mainRouter.route("/api/customers/getAllCustomers").get(getAllCustomers);
 

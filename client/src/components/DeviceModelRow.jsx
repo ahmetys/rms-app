@@ -30,7 +30,7 @@ function DeviceModelRow({ selectedDeviceTypeId, selectedDeviceBrandId, deviceMod
               <li onClick={() => setEditMod(true)} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
                 Düzenle
               </li>
-              <li onClick={() => deleteDeviceModel({ deviceTypeId: selectedDeviceTypeId, deviceBrandId: deviceModelObject._id, deviceModelId: deviceModelObject._id })} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
+              <li onClick={() => deleteDeviceModel({ deviceTypeId: selectedDeviceTypeId, deviceBrandId: selectedDeviceBrandId, deviceModelId: deviceModelObject._id })} className="hover:bg-mblue-200 hover:drop-shadow-xl p-3 duration-300">
                 Sil
               </li>
             </ul>

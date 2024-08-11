@@ -144,15 +144,28 @@ const getDeviceBrandsByDeviceType = async (req, res) => {
 // };
 
 const updateDeviceModel = async (req, res) => {
+  console.log(req.params.deviceModelId);
+
   try {
-    console.log("update req");
-    console.log(req.body);
-    const deviceModel = await DeviceModel.findById(req.params.deviceModelId);
+    const deviceModel = await DeviceDefinition.findOneAndUpdate(
+      { "deviceBrands.deviceModels._id": req.params.deviceModelId },
+      {
+        $set: {
+          "deviceBrands.$[].deviceModels.$[xxx].deviceModel": req.body.deviceModel,
+        },
+      },
+      { arrayFilters: [{ "xxx._id": req.params.deviceModelId }], new: true }
+    );
     console.log(deviceModel);
-    deviceModel.deviceModel = req.body.deviceModel;
-    deviceModel.save();
-    console.log("updated");
-    console.log(deviceModel);
+
+    // console.log("update req");
+    // console.log(req.body);
+    // const deviceModel = await DeviceModel.findById(req.params.deviceModelId);
+    // console.log(deviceModel);
+    // deviceModel.deviceModel = req.body.deviceModel;
+    // deviceModel.save();
+    // console.log("updated");
+    // console.log(deviceModel);
     res.status(200).json({ succeeded: true, deviceModel });
   } catch (error) {
     console.log(error);
@@ -160,24 +173,20 @@ const updateDeviceModel = async (req, res) => {
 };
 
 const deleteDeviceModel = async (req, res) => {
-  try {
-    // await DeviceModel.findOneAndDelete({ _id: req.params.deviceModelId });
-    const deviceModel = await DeviceDefinition.find({ "deviceBrands.deviceModels._id": req.params.deviceModelId });
+  const deviceType = await DeviceDefinition.findOneAndUpdate(
+    {
+      deviceBrands: {
+        $elemMatch: {
+          _id: req.params.deviceBrandId,
+          "deviceModels._id": req.params.deviceModelId,
+        },
+      },
+    },
+    { $pull: { "deviceBrands.$.deviceModels": { _id: req.params.deviceModelId } } }
+  );
+  console.log(deviceType);
 
-    deviceModel = deviceModel.map((type) => {
-      type.deviceBrands.map((brand) => {
-        console.log(brand.deviceModels);
-        brand.deviceModels.filter((model) => {
-          console.log(model);
-          return model._id !== req.params.deviceModelId;
-        });
-        console.log(brand.deviceModels);
-      });
-    });
-    deviceModel.save();
-
-    res.status(200).json({ succeeded: true, deviceModel });
-  } catch (error) {}
+  res.status(200).json({ succeeded: true, deviceType });
 };
 
 const getDeviceModelsByDeviceBrand = async (req, res) => {
