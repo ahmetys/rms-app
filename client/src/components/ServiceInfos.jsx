@@ -1,13 +1,23 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 function ServiceInfos() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [serviceData, setServiceData] = useState({ serviceTypes: [], orderedParts: [], accessories: [] });
   const [serviceTypePopup, setServiceTypePopup] = useState(false);
+  const [serviceList, setServiceList] = useState([]);
   const handleServiceTypesSelect = (serviceType) => {
     if (!serviceData.serviceTypes.includes(serviceType)) {
       setServiceData({ ...serviceData, serviceTypes: [...serviceData.serviceTypes, serviceType] });
     }
   };
+  useEffect(() => {
+    const getServiceList = async () => {
+      const response = await axios.get(`${API_URL}/api/services/getServiceList`, { withCredentials: true });
+      console.log(response.data);
+      setServiceList([...response.data]);
+    };
+    getServiceList();
+  }, []);
   return (
     <div>
       <h2 className="p-5 font-semibold bg-gray-50 border-y">Servis Bilgileri</h2>
@@ -31,22 +41,20 @@ function ServiceInfos() {
           </div>
           <div className="relative">
             <ul className={`${serviceTypePopup ? "" : "hidden"} absolute z-10 bg-white border-b border-x cursor-pointer drop-shadow-xl w-full`}>
-              <li className="p-2">
+              {serviceList.map((item, index) => {
+                return (
+                  <li key={index} onClick={() => handleServiceTypesSelect(item.serviceType)} className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">
+                    {item.serviceType}
+                  </li>
+                );
+              })}
+              {/* <li className="p-2">
                 <input type="text" className="w-full h-12 p-3 border focus:outline-none rounded-none" placeholder="Ariza girin" />
-              </li>
-              <li onClick={() => handleServiceTypesSelect("Ekran Degisimi")} className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">
-                Ekran Degisimi
-              </li>
-              <li onClick={() => handleServiceTypesSelect("Pil Degisimi")} className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">
-                Pil Degisimi
-              </li>
-              <li onClick={() => handleServiceTypesSelect("Kapak Degisimi")} className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">
-                Ariza Tarama
-              </li>
+              </li>               */}
             </ul>
           </div>
         </div>
-        <div className="p-5 col-span-1 flex flex-col">
+        {/* <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
             Siparis Edilecek Parca:
           </label>
@@ -69,8 +77,8 @@ function ServiceInfos() {
               <li className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">Sarj Soketi</li>
             </ul>
           </div>
-        </div>
-        <div className="p-5 col-span-1 flex flex-col">
+        </div> */}
+        {/* <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
             Aksesuar:
           </label>
@@ -93,15 +101,7 @@ function ServiceInfos() {
               <li className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">Klavye</li>
             </ul>
           </div>
-        </div>
-        <div className="p-5 col-span-1 flex flex-col">
-          <label htmlFor="" className="font-semibold">
-            Not:
-          </label>
-          <div className="relative flex items-center">
-            <textarea type="text" className="w-full p-3 border focus:outline-none no-scrollbar rounded-none focus:border-mblue-700" defaultValue={""} />
-          </div>
-        </div>
+        </div> */}
         <div className="p-5 col-span-1 flex justify-between space-x-10">
           <div className="flex flex-col w-full">
             <label htmlFor="" className="font-semibold">
@@ -120,22 +120,18 @@ function ServiceInfos() {
               <input type="time" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
               {/* <span class="inline-block border-y border-r bg-mblue-50 font-semibold text-xl h-full p-2 items-center">h</span> */}
             </div>
-            <div className="relative">
-              <ul className="hidden absolute z-10 bg-white border-b border-x cursor-pointer drop-shadow-xl w-full">
-                <li className="p-2">
-                  <input type="text" className="w-full h-12 p-3 border focus:outline-none rounded-none" placeholder="Süre girin" />
-                </li>
-                <li className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">00:30</li>
-                <li className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">01:00</li>
-                <li className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">01:30</li>
-                <li className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">02:00</li>
-                <li className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">02:30</li>
-                <li className="hover:bg-mblue-200 duration-300 drop-shadow-xl p-3">03:00</li>
-              </ul>
-            </div>
           </div>
         </div>
         <div className="p-5 col-span-1 flex flex-col">
+          <label htmlFor="" className="font-semibold">
+            Not:
+          </label>
+          <div className="relative flex items-center">
+            <textarea type="text" className="w-full p-3 border focus:outline-none no-scrollbar rounded-none focus:border-mblue-700" defaultValue={""} />
+          </div>
+        </div>
+
+        {/* <div className="p-5 col-span-1 flex flex-col">
           <div className="flex justify-between border-b mb-2">
             <div className="basis-4/5">
               <span className="font-semibold">Islem</span>
@@ -180,7 +176,7 @@ function ServiceInfos() {
               <span className="inline-block border-y border-r bg-mblue-50 font-semibold text-lg px-2 py-1 items-center">€</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

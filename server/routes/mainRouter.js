@@ -22,12 +22,16 @@ const mainRouter = express.Router();
 
 mainRouter.route("/register").post(createUser);
 mainRouter.route("/login").post(loginUser);
+
+//CUSTOMERS
 mainRouter.route("/api/customers/createCustomer").post(authMiddleware, createCustomer);
 mainRouter.route("/api/customers/getAllCustomers").get(authMiddleware, getAllCustomers);
 mainRouter.route("/api/customers/getCustomerById/:customerId").get(authMiddleware, getCustomerById);
 mainRouter.route("/api/customers/getCustomerByName").post(authMiddleware, getCustomerByName);
 mainRouter.route("/api/customers/updateCustomer").put(authMiddleware, updateCustomer);
 mainRouter.route("/api/customers/deleteCustomer/:customerId").delete(authMiddleware, deleteCustomer);
+
+//SERVICES
 mainRouter.route("/api/services/newServiceType").post(authMiddleware, newServiceType);
 mainRouter.route("/api/services/getServiceList").get(authMiddleware, getServiceList);
 mainRouter.route("/api/services/updateServiceType/:id").put(authMiddleware, updateServiceType);
