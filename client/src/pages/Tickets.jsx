@@ -1,5 +1,16 @@
+import { useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
+import axios from "axios";
 function Tickets() {
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    const getAllTickets = async () => {
+      const response = await axios.get(`${API_URL}/api/tickets/getAllTickets`);
+      console.log(response.data);
+    };
+    getAllTickets();
+  }, []);
   return (
     <section className="border drop-shadow-xl bg-white rounded mb-5">
       {/*Müsteriler Header*/}
