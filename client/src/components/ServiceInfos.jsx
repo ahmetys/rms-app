@@ -57,10 +57,10 @@ function ServiceInfos({ newTicket, setNewTicket }) {
             Islem:
           </label>
           <div className="relative flex items-center">
-            <div className="w-full min-h-12 py-2 pr-5 pl-3 border space-y-1 space-x-1">
+            <div className="w-full min-h-12 py-2 pr-5 pl-3 border ">
               {serviceInfos.serviceTypes.map((serviceType, index) => {
                 return (
-                  <span key={index} className="inline-flex space-x-2 cursor-pointer items-center rounded-md hover:drop-shadow-md duration-300 bg-mblue-200 px-2 py-1 text-sm font-medium text-mblue-950 ring-1 ring-inset ring-mblue-600">
+                  <span key={index} className="inline-flex space-x-2 mr-1 mb-1 cursor-pointer items-center rounded-md hover:drop-shadow-md duration-300 bg-mblue-200 px-2 py-1 text-sm font-medium text-mblue-950 ring-1 ring-inset ring-mblue-600">
                     <span>{serviceType.serviceType} </span>
                     <i className="fa-solid fa-xmark" />
                   </span>

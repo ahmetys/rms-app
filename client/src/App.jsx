@@ -17,6 +17,7 @@ import Tickets from "./pages/Tickets";
 import NewTicket from "./pages/NewTicket";
 import DeviceDefinitions from "./pages/DeviceDefinitions";
 import { DefinitionsProvider } from "./context/DefinitionsContext";
+import TicketDetails from "./pages/TicketDetails";
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/" element={<Dashboard />}></Route>
                 <Route path="/tickets" element={<Tickets />}></Route>
                 <Route path="/tickets/new" element={<NewTicket />}></Route>
+                <Route path="/tickets/:ticketId" element={<TicketDetails />}></Route>
                 <Route path="/customers" element={<Customers />}></Route>
                 <Route path="/customers/:customerId" element={<CustomerDetails />}></Route>
                 <Route path="/customers/edit/:customerId" element={<EditCustomer />}></Route>

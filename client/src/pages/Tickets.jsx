@@ -1,16 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
 function Tickets() {
   const API_URL = import.meta.env.VITE_API_URL;
+  const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
     const getAllTickets = async () => {
       const response = await axios.get(`${API_URL}/api/tickets/getAllTickets`);
-      console.log(response.data);
+      setTickets([...response.data]);
     };
     getAllTickets();
   }, []);
+  const deleteTicket = () => {};
   return (
     <section className="border drop-shadow-xl bg-white rounded mb-5">
       {/*Müsteriler Header*/}
@@ -36,41 +38,49 @@ function Tickets() {
               <table className="table-auto min-w-full overflow-auto overscroll-contain">
                 <thead className="border-b font-bold">
                   <tr>
-                    <td className="py-3 pl-5 pr-2">Müsteri Adi</td>
-                    <td className="py-3 px-2">Telefon</td>
-                    <td className="py-3 px-2">E-Posta</td>
-                    <td className="py-3 px-2">Adres</td>
+                    <td className="py-3 pl-5 pr-2">Müsteri</td>
+                    <td className="py-3 px-2">Cihaz</td>
+                    <td className="py-3 px-2">Ariza</td>
+                    <td className="py-3 px-2">Kayit Tarihi</td>
+                    <td className="py-3 px-2">Durum</td>
                     <td className="py-3 pl-2 pr-5">Islemler</td>
                   </tr>
                 </thead>
                 <tbody>
-                  {/* {customers.map((customer) => {
+                  {tickets.map((ticket) => {
                     return (
-                      <tr key={customer._id} className="hover:bg-mblue-200 hover:drop-shadow-xl duration-300 cursor-pointer">
-                        <td className="pl-5 pr-2 py-3">{customer.customerName}</td>
-                        <td className="px-2 py-3">{customer.customerPhone}</td>
-                        <td className="px-2 py-3">{customer.customerEmail}</td>
-                        <td className="px-2 py-3">{customer.customerAddress}</td>
+                      <tr key={ticket._id} className="hover:bg-mblue-200 hover:drop-shadow-xl duration-300 cursor-pointer">
+                        <td className="pl-5 pr-2 py-3">{ticket.customerInfos.customerName}</td>
+                        <td className="px-2 py-3">{ticket.deviceInfos?.deviceModel}</td>
+                        <td className="px-2 py-3  space-y-2">
+                          {ticket.serviceInfos.serviceTypes.map((item, index) => {
+                            return <ServiceType key={index} serviceType={item.serviceType}></ServiceType>;
+                          })}
+                        </td>
+                        <td className="px-2 py-3">{ticket.createdAt}</td>
+                        <td className="px-2 py-3">
+                          <ServiceStatus serviceStatus={ticket.serviceInfos.serviceStatus}></ServiceStatus>
+                        </td>
                         <td className="pl-2 pr-5 py-3">
                           <div className="flex cursor-pointer space-x-4">
-                            <Link to={`/customers/${customer._id}`}>
+                            <Link to={`/tickets/${ticket._id}`}>
                               <div className="cursor-pointer  h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
                                 <i className="fa-regular fa-file-lines text-xl" />
                               </div>
                             </Link>
-                            <Link to={`/customers/edit/${customer._id}`}>
+                            <Link to={`/tickets/edit/${ticket._id}`}>
                               <div className="cursor-pointer  h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
                                 <i className="fa-regular fa-pen-to-square text-xl" />
                               </div>
                             </Link>
-                            <div onClick={() => deleteCustomer(customer._id)} className="cursor-pointer  h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
+                            <div onClick={() => deleteTicket(ticket._id)} className="cursor-pointer  h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
                               <i className="fa-regular fa-trash-can  text-xl" />
                             </div>
                           </div>
                         </td>
                       </tr>
                     );
-                  })} */}
+                  })}
                 </tbody>
               </table>
             </div>
@@ -84,3 +94,19 @@ function Tickets() {
 }
 
 export default Tickets;
+
+function ServiceType({ serviceType }) {
+  return (
+    <span className="inline-flex space-x-2 mr-2 cursor-pointer items-center rounded-md hover:drop-shadow-md duration-300 bg-mblue-300 px-2 py-1 text-xs font-medium text-mblue-950 ring-1 ring-inset ring-mblue-600">
+      <span>{serviceType} </span>
+    </span>
+  );
+}
+
+function ServiceStatus({ serviceStatus }) {
+  return (
+    <span className="inline-flex space-x-2 cursor-pointer items-center rounded-md hover:drop-shadow-md duration-300 bg-gray-200 px-2 py-1 text-xs font-medium text-gray-950 ring-1 ring-inset ring-gray-600">
+      <span>{serviceStatus} </span>
+    </span>
+  );
+}
