@@ -18,7 +18,7 @@ import {
   deleteDeviceModel,
   getDeviceModelsByDeviceBrand,
 } from "../controllers/deviceDefinitionsController.js";
-import { getAllTickets, newTicket } from "../controllers/ticketController.js";
+import { getAllTickets, newTicket, getTicketById } from "../controllers/ticketController.js";
 const mainRouter = express.Router();
 
 mainRouter.route("/register").post(createUser);
@@ -61,4 +61,5 @@ mainRouter.route("/api/definitions/getDeviceModelsByDeviceBrand/:deviceBrandId")
 //TICKETS
 mainRouter.route("/api/tickets/newTicket").post(authMiddleware, newTicket);
 mainRouter.route("/api/tickets/getAllTickets").get(authMiddleware, getAllTickets);
+mainRouter.route("/api/tickets/getTicketById/:ticketId").get(authMiddleware, getTicketById);
 export default mainRouter;

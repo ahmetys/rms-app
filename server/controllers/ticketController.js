@@ -17,4 +17,10 @@ const newTicket = async (req, res) => {
   }
 };
 
-export { newTicket, getAllTickets };
+const getTicketById = async (req, res) => {
+  console.log(req.params.ticketId);
+
+  const ticket = await Ticket.findById({ _id: req.params.ticketId });
+  res.status(200).json({ succeeded: true, ticket });
+};
+export { newTicket, getAllTickets, getTicketById };
