@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import moment from "moment";
 function TicketDetails() {
   const [ticketDetails, setTicketDetails] = useState({});
   const API_URL = import.meta.env.VITE_API_URL;
@@ -17,17 +17,16 @@ function TicketDetails() {
   }, []);
   return (
     <section className="border drop-shadow-xl bg-white rounded mb-5">
-      {/*Yeni Müsteri Header*/}
       <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center relative">
-        <h1 className="col-span-4 text-4xl font-semibold">Fis Detaylari</h1>
+        <h1 className="col-span-4 text-4xl font-semibold justify-between flex items-center">
+          Fis Detaylari <span className="text-base">Ticket ID: {params.ticketId}</span>
+        </h1>
         <div className="col-span-1 h-auto flex justify-end space-x-3">
           <div onClick={() => navigate(-1)} className="flex justify-center cursor-pointer items-center w-12 h-12 shrink-0 grow-0 text-white bg-mblue-500 rounded-full hover:bg-mblue-600 duration-300 drop-shadow-xl">
             <i className="fa-solid fa-arrow-left text-white text-2xl" />
           </div>
         </div>
       </div>
-      {/*Yeni Müsteri Body*/}
-
       <div>
         <h2 className="p-5 font-semibold bg-gray-50 border-b">Müsteri Bilgileri</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -120,7 +119,6 @@ function TicketDetails() {
           </div>
         </div>
       </div>
-
       <div>
         <h2 className="p-5 font-semibold bg-gray-50 border-y">Servis Bilgileri</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -152,7 +150,7 @@ function TicketDetails() {
                 <label htmlFor="" className="font-semibold">
                   Teslimat Tarihi:
                 </label>
-                <span className="w-full h-12 py-3 ">{ticketDetails.serviceInfos?.estimatedDeliveryDate}</span>
+                <span className="w-full h-12 py-3 ">{moment(ticketDetails.serviceInfos?.estimatedDeliveryDate).format("DD.MM.YYYY")}</span>
               </div>
               <div className="flex w-full flex-col">
                 <label htmlFor="" className="font-semibold">

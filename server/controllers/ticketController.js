@@ -23,4 +23,13 @@ const getTicketById = async (req, res) => {
   const ticket = await Ticket.findById({ _id: req.params.ticketId });
   res.status(200).json({ succeeded: true, ticket });
 };
-export { newTicket, getAllTickets, getTicketById };
+
+const updateTicket = async (req, res) => {
+  console.log(req.body);
+  const ticket = await Ticket.findById(req.body.ticketId);
+  ticket.serviceInfos.serviceStatus = req.body.status;
+  ticket.save();
+  console.log(ticket);
+  res.status(200).json({ succeeded: true, ticket });
+};
+export { newTicket, getAllTickets, getTicketById, updateTicket };

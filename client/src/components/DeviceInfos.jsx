@@ -10,18 +10,18 @@ function DeviceInfos({ newTicket, setNewTicket }) {
 
   const handleChange = (e) => {
     if (e.target.name === "deviceType") {
-      deviceDefinitions.map((item) => {
-        if (item.deviceType === e.target.value) {
-          setDeviceBrands(item.deviceBrands.map((item) => item.deviceBrand));
+      deviceDefinitions.map((dt) => {
+        if (dt.deviceType === e.target.value) {
+          setDeviceBrands(dt.deviceBrands.map((db) => db.deviceBrand));
         }
       });
       setDeviceModels([]);
     } else if (e.target.name === "deviceBrand") {
-      deviceDefinitions.map((item) => {
-        if (item.deviceType === deviceInfos.deviceType) {
-          item.deviceBrands.map((db) => {
+      deviceDefinitions.map((dt) => {
+        if (dt.deviceType === deviceInfos.deviceType) {
+          dt.deviceBrands.map((db) => {
             if (db.deviceBrand === e.target.value) {
-              setDeviceModels(db.deviceModels.map((item) => item.deviceModel));
+              setDeviceModels(db.deviceModels.map((dm) => dm.deviceModel));
             }
           });
         }

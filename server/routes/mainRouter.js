@@ -1,6 +1,6 @@
 import express from "express";
 import { createUser, loginUser } from "../controllers/userController.js";
-import { createCustomer, getAllCustomers, getCustomerById, getCustomerByName, updateCustomer, deleteCustomer } from "../controllers/customerController.js";
+import { createCustomer, getAllCustomers, getCustomerById, getCustomerByName, updateCustomer, deleteCustomer, getCustomerDetails } from "../controllers/customerController.js";
 import { newServiceType, getServiceList, updateServiceType, deleteServiceType } from "../controllers/serviceController.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 import {
@@ -18,7 +18,7 @@ import {
   deleteDeviceModel,
   getDeviceModelsByDeviceBrand,
 } from "../controllers/deviceDefinitionsController.js";
-import { getAllTickets, newTicket, getTicketById } from "../controllers/ticketController.js";
+import { getAllTickets, newTicket, getTicketById, updateTicket } from "../controllers/ticketController.js";
 const mainRouter = express.Router();
 
 mainRouter.route("/register").post(createUser);
@@ -31,6 +31,7 @@ mainRouter.route("/api/customers/getCustomerById/:customerId").get(authMiddlewar
 mainRouter.route("/api/customers/getCustomerByName").post(authMiddleware, getCustomerByName);
 mainRouter.route("/api/customers/updateCustomer").put(authMiddleware, updateCustomer);
 mainRouter.route("/api/customers/deleteCustomer/:customerId").delete(authMiddleware, deleteCustomer);
+mainRouter.route("/api/customers/getCustomerDetails").post(authMiddleware, getCustomerDetails);
 
 //SERVICES
 mainRouter.route("/api/services/newServiceType").post(authMiddleware, newServiceType);
@@ -62,4 +63,5 @@ mainRouter.route("/api/definitions/getDeviceModelsByDeviceBrand/:deviceBrandId")
 mainRouter.route("/api/tickets/newTicket").post(authMiddleware, newTicket);
 mainRouter.route("/api/tickets/getAllTickets").get(authMiddleware, getAllTickets);
 mainRouter.route("/api/tickets/getTicketById/:ticketId").get(authMiddleware, getTicketById);
+mainRouter.route("/api/tickets/updateTicket").post(authMiddleware, updateTicket);
 export default mainRouter;

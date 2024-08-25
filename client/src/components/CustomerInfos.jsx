@@ -5,6 +5,7 @@ function CustomerInfos({ newTicket, setNewTicket }) {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const [customerInfos, setCustomerInfos] = useState({});
+
   const [customerSuggestions, setCustomerSuggestions] = useState([]);
   const [customerSuggestionsPopup, setCustomerSuggestionsPopup] = useState(false);
   const handleChangeInputs = (e) => {
@@ -30,6 +31,7 @@ function CustomerInfos({ newTicket, setNewTicket }) {
   useEffect(() => {
     setNewTicket({ ...newTicket, customerInfos: { ...customerInfos } });
   }, [customerInfos]);
+
   return (
     <div>
       <h2 className="p-5 font-semibold bg-gray-50 border-b">Müsteri Bilgileri</h2>
