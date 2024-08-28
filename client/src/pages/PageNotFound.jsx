@@ -7,7 +7,7 @@ function PageNotFound() {
         <p className="text-center mb-12 text-8xl font-bold">404</p>
         <p className="text-center text-2xl mb-12">Seite nicht gefunden!</p>
         <p className="text-center">
-          <i className="text-red-700 fa-solid fa-triangle-exclamation text-8xl"></i>
+          <i className="text-red-700 fa-solid fa-triangle-exclamation text-6xl"></i>
         </p>
       </div>
       <div className="flex items-center space-x-5 justify-center mb-4">
