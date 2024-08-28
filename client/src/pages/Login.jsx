@@ -47,7 +47,7 @@ function Login() {
   useEffect(() => {
     if (cookie.token) {
       toast.success("Sie sind bereits angemeldet");
-      navigate("/");
+      navigate("/tickets");
     }
   }, []);
   return (
