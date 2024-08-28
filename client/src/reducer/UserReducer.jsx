@@ -1,12 +1,10 @@
-export function UserReducer(user, action) {
+export function UserReducer(state, action) {
   switch (action.type) {
     case "LOGIN":
-      return { ...action.payload, isLoggedIn: true };
-      break;
+      return { ...action.payload };
     case "LOGOUT":
-      return { ...action.payload, isLoggedIn: false };
-      break;
+      return { username: null };
     default:
-      break;
+      return state;
   }
 }

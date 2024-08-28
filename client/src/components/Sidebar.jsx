@@ -11,152 +11,20 @@ function Sidebar({ showSidebar, setShowSidebar }) {
       <ul className="text-sm lg:text-base space-y-1">
         <NavLink onClick={() => setShowSidebar(false)} to={`tickets`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-solid fa-ticket" />
-          <span> Servis Fisleri </span>
+          <span> Tickets </span>
         </NavLink>
         <NavLink onClick={() => setShowSidebar(false)} to={`customers`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-solid fa-people-group" />
-          <span> Müsteriler </span>
+          <span> Kunden </span>
         </NavLink>
         <NavLink onClick={() => setShowSidebar(false)} to={`servicelist`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-solid fa-list-check" />
-          <span> Servis Listesi </span>
+          <span> Servicearten </span>
         </NavLink>
         <NavLink onClick={() => setShowSidebar(false)} to={`deviceDefinitions`} className={`flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200 ${(isActive) => (isActive ? "active" : "")}`}>
           <i className="fa-regular fa-keyboard"></i>
-          <span> Cihaz Tanimlamalari </span>
+          <span> Gerätdefinitionen </span>
         </NavLink>
-
-        {/* <li>
-          <div className="flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-700 bg-mblue-600 text-white">
-            <i className="fa-solid fa-shop" />
-            <span> Servis Islemleri </span>
-          </div>
-        </li>
-        <li>
-          <div className="flex items-center space-x-3 py-2 pl-5 pr-3 mb-1 duration-300 rounded-r-full cursor-pointer hover:bg-mblue-200">
-            <i className="fa-solid fa-shop" />
-            <span> Servis Islemleri </span>
-          </div>
-        </li>
-        <li>
-          <div className="flex items-center space-x-3 py-2 pl-5 pr-3 mb-1  hover:bg-mblue-200 duration-300 rounded-r-full  cursor-pointer">
-            <i className="fa-solid fa-shop" />
-            <span> Servis Islemleri </span>
-          </div>
-        </li>
-        <li>
-          <div className="flex items-center space-x-3 py-2 pl-5 pr-3 mb-1  hover:bg-mblue-200 duration-300 rounded-r-full  cursor-pointer">
-            <i className="fa-solid fa-shop" />
-            <span> Servis Islemleri </span>
-          </div>
-        </li>
-        <li>
-          <div className="flex items-center space-x-3 py-2 pl-5 pr-3 mb-1  hover:bg-mblue-200 duration-300 rounded-r-full  cursor-pointer">
-            <i className="fa-solid fa-shop" />
-            <span> Servis Islemleri </span>
-          </div>
-        </li>
-        <li>
-          <div className="flex items-center space-x-3 py-2 pl-5 pr-3 mb-1  hover:bg-mblue-200 duration-300 rounded-r-full  cursor-pointer">
-            <i className="fa-solid fa-shop" />
-            <span> Servis Islemleri </span>
-          </div>
-        </li>
-        <li>
-          <div className="flex items-center space-x-3 py-2 pl-5 pr-3 mb-1  hover:bg-mblue-200 duration-300 rounded-r-full  cursor-pointer">
-            <i className="fa-solid fa-shop" />
-            <span> Servis Islemleri </span>
-          </div>
-        </li>
-        <li>
-          <div className="flex items-center space-x-3 py-2 pl-5 pr-3 mb-1  hover:bg-mblue-200 duration-300 rounded-r-full  cursor-pointer">
-            <i className="fa-solid fa-shop" />
-            <span> Servis Islemleri </span>
-          </div>
-        </li> */}
-
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        <li>0</li>
-        {/* <li>Stok Yönetimi</li>
-  <li>Fatura</li>
-  <li>Personel Islemleri</li>
-  <li>Kasa Islemleri</li>
-  <li>Cari Hesaplar</li>
-  <li>Gelir Gider</li>
-  <li>Tanimlamalar</li>
-  <li>Veresiye Defteri</li>
-  <li>Hatirlatmalar</li>
-  <li>Aktarim Islemleri</li>
-  <li>Market Yönetimi</li>
-  <li>Raporlar</li>
-  <li>Ayarlar</li> */}
       </ul>
     </aside>
   );

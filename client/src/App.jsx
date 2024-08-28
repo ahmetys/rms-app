@@ -18,6 +18,7 @@ import NewTicket from "./pages/NewTicket";
 import DeviceDefinitions from "./pages/DeviceDefinitions";
 import { DefinitionsProvider } from "./context/DefinitionsContext";
 import TicketDetails from "./pages/TicketDetails";
+import Cookies from "js-cookie";
 function App() {
   return (
     <>
@@ -29,7 +30,7 @@ function App() {
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
               <Route path="/" element={<PrivateRoute />}>
-                <Route path="/" element={<Dashboard />}></Route>
+                {/* <Route path="/" element={<Dashboard />}></Route> */}
                 <Route path="/tickets" element={<Tickets />}></Route>
                 <Route path="/tickets/new" element={<NewTicket />}></Route>
                 <Route path="/tickets/:ticketId" element={<TicketDetails />}></Route>
@@ -50,11 +51,12 @@ function App() {
   );
 }
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ children }) => {
   const [cookie, setCookie, removeCookie] = useCookies(["token"]);
-  // if (!cookie.token) {
-  //   return <Navigate to="/login" />;
-  // }
+
+  if (!cookie.token) {
+    return <Navigate to="/login" />;
+  }
   return <Layout />;
 };
 

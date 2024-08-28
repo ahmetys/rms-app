@@ -6,14 +6,11 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 function Register() {
-  const [cookie, setCookie, removeCookie] = useCookies(["jwt"]);
-
-  //toast("Wow so easy !");
+  const [cookie, setCookie, removeCookie] = useCookies(["token"]);
   const [inputType, setInputType] = useState("password");
   const navigate = useNavigate();
-  const handleRegisterSubmit = async (e) => {
+  const handleRegisterFormSubmit = async (e) => {
     const API_URL = import.meta.env.VITE_API_URL;
-
     e.preventDefault();
     let username = e.target.username.value;
     let email = e.target.email.value;
@@ -30,33 +27,34 @@ function Register() {
             password,
           };
           try {
-            const response = await axios.post(`${API_URL}/register`, formData);
-            console.log(response);
-            toast.success("Registration successfull");
-            navigate("/login");
-          } catch (err) {
-            console.log(err.response.data);
-            toast.error(err.response.data.error.message);
+            const { data } = await axios.post(`${API_URL}/register`, formData);
+            if (data) {
+              toast.success("Anmeldung erfolgreich");
+              navigate("/login");
+            }
+          } catch (error) {
+            console.log(error.response.data);
+            toast.error("Fehler");
           }
         } else {
-          toast.error("Lütfen Kullanim Kosullarini kabul edin");
+          toast.error("Bitte akzeptieren Sie die Nutzungsbedingungen");
         }
       } else {
-        toast.error("Sifreler eslesmiyor!");
+        toast.error("Passwörter stimmen nicht überein");
       }
     } else {
-      toast.error("Lütfen tüm alanlari doldurun!");
+      toast.error("Bitte füllen Sie alle Felder aus");
     }
   };
 
-  const togglePasswordInput = () => {
+  const handlePasswordInputToggle = () => {
     setInputType(inputType === "password" ? "text" : "password");
   };
 
   useEffect(() => {
     if (cookie.token) {
-      toast.success("You already logged in");
-      navigate("/dashboard");
+      toast.success("Sie sind bereits angemeldet");
+      navigate("/tickets");
     }
   }, []);
 
@@ -67,35 +65,35 @@ function Register() {
           <img src="../src/assets/images/logo.png" className="w-2/3" />
         </div>
         <div className="">
-          <h2 className="text-xl font-semibold mb-3">Yeni Kullanici Kaydi</h2>
-          <form onSubmit={handleRegisterSubmit}>
+          <h2 className="text-xl font-semibold mb-3">Benutzerregistrierung</h2>
+          <form onSubmit={handleRegisterFormSubmit}>
             <div>
-              <input autoComplete="new-password" type="text" name="username" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Kullanici adi girin" />
+              <input autoComplete="new-password" type="text" name="username" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Benutzername" />
             </div>
             <div>
-              <input type="email" name="email" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="E-Posta adresinizi girin" />
+              <input type="email" name="email" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="E-Mail" />
             </div>
             <div className="relative flex justify-end items-center mb-4">
-              <input type={inputType} name="password" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Sifrenizi girin" />
-              <button type="button" onClick={togglePasswordInput} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
+              <input type={inputType} name="password" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Passwort" />
+              <button type="button" onClick={handlePasswordInputToggle} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
                 <i className="fa-regular fa-eye text-xl"></i>
               </button>
             </div>
             <div className="relative flex justify-end items-center mb-4">
-              <input type={inputType} name="confirmPassword" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Sifrenizi tekrar girin" />
-              <button type="button" onClick={togglePasswordInput} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
+              <input type={inputType} name="confirmPassword" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Passwort wiederholen" />
+              <button type="button" onClick={handlePasswordInputToggle} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
                 <i className="fa-regular fa-eye text-xl"></i>
               </button>
             </div>
             <div className="flex items-center space-x-3 mb-3">
-              <input id="privacyPolicy" type="checkbox" name="privacyPolicy" className="h-12 w-6" />
-              <label htmlFor="privacyPolicy">Kullanim kosullarini onayliyorum.</label>
+              <input id="privacyPolicy" type="checkbox" name="privacyPolicy" className="h-6 w-6 " />
+              <label htmlFor="privacyPolicy">Ich habe die AGB gelesen.</label>
             </div>
-            <button className="cursor-pointer p-3 mb-6 w-full text-white bg-mblue-500 rounded-none hover:bg-mblue-600 duration-300 drop-shadow-xl">Kayit ol</button>
+            <button className="cursor-pointer p-3 mb-6 w-full text-white bg-mblue-500 rounded-none hover:bg-mblue-600 duration-300 drop-shadow-xl">Anmelden</button>
             <div className="flex justify-center space-x-3 mt-2">
-              <p>Zaten Üye misiniz?</p>
+              <p>Sie haben bereits ein Konto?</p>
               <Link to={`/login`} className="text-mblue-800 font-semibold">
-                Giris Yap!
+                Einloggen
               </Link>
             </div>
           </form>
