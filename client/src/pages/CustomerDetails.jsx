@@ -68,7 +68,7 @@ function CustomerDetails() {
               Iletisim Tercihleri:
             </label>
             <div className="flex">
-              <div className="relative flex items-center">{customerDetails.customerInfos?.contactPreferenceCall && <span className=" py-3 mr-2">Arama</span>}</div>
+              <div className="relative flex items-center">{customerDetails.customerInfos?.contactPreferenceCall && <span className="py-3 mr-2">Arama</span>}</div>
               <div className="relative flex items-center">{customerDetails.customerInfos?.contactPreferenceSms && <span className="py-3 mr-2">SMS</span>}</div>
               <div className="relative flex items-center">{customerDetails.customerInfos?.contactPreferenceWhatsApp && <span className="py-3 mr-2">WhatsApp </span>}</div>
             </div>

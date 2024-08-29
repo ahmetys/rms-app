@@ -1,7 +1,0 @@
-#
-cihaz türleri
-markalar
-modeller
-tamir türleri
-parca türleri
-aksesuar türleri
