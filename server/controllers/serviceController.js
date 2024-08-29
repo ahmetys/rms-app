@@ -3,42 +3,47 @@ const newServiceType = async (req, res) => {
   console.log(req.body);
   try {
     const serviceType = await ServiceType.create(req.body);
-
-    //res.redirect("/login");
-    res.status(201).json({ status: "ok", serviceType });
+    res.status(201).json({ succeeded: true, serviceType });
   } catch (error) {
-    console.log(error);
-    if (error.code == 11000) {
-      res.status(500).json({
-        succeded: false,
-        error: { message: "Bu kullanici veya e mail kayitli" },
-      });
-    }
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
   }
 };
 
-const getServiceList = async (req, res) => {
-  const serviceList = await ServiceType.find({});
-  console.log(serviceList);
-  res.status(200).json(serviceList);
+const getAllServiceTypes = async (req, res) => {
+  const serviceTypes = await ServiceType.find({});
+  res.status(200).json(serviceTypes);
 };
 
 const updateServiceType = async (req, res) => {
   try {
     const serviceType = await ServiceType.findById(req.params.id);
-    console.log(serviceType);
-    console.log(req.body);
     serviceType.serviceType = req.body.serviceType;
     serviceType.save();
     console.log(serviceType);
-    res.status(200).json({ status: "ok", serviceType });
-  } catch (error) {}
+
+    res.status(200).json({ succeeded: true, serviceType });
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
 };
 
 const deleteServiceType = async (req, res) => {
+  console.log(req.body);
+
   try {
     await ServiceType.findOneAndDelete({ _id: req.params.id });
-    res.status(200).json({ status: "ok" });
-  } catch (error) {}
+    res.status(200).json({ succeeded: true });
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
 };
-export { newServiceType, getServiceList, updateServiceType, deleteServiceType };
+export { newServiceType, getAllServiceTypes, updateServiceType, deleteServiceType };

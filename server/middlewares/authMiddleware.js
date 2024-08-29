@@ -2,7 +2,6 @@ import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
 const authMiddleware = async (req, res, next) => {
-  console.log("middleware");
   const token = req.cookies.token;
   if (token) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -11,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
     next();
   } else {
     res.user = null;
-    next();
+    res.clearCookie("token");
   }
 };
 

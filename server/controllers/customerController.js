@@ -2,19 +2,14 @@ import Customer from "../models/Customer.js";
 import { Ticket } from "../models/Ticket.js";
 
 const createCustomer = async (req, res) => {
-  console.log(req.body);
   try {
     const customer = await Customer.create(req.body);
-    //res.redirect("/login");
-    res.status(201).json({ status: "ok", customer });
+    res.status(201).json({ succeeded: true, customer });
   } catch (error) {
-    console.log(error);
-    if (error.code == 11000) {
-      res.status(500).json({
-        succeded: false,
-        error: { message: "Bu kullanici veya e mail kayitli" },
-      });
-    }
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
   }
 };
 
@@ -39,14 +34,13 @@ const updateCustomer = async (req, res) => {
   customer.contactPreferenceSms = req.body.contactPreferenceSms;
   customer.contactPreferenceCall = req.body.contactPreferenceCall;
   customer.save();
-  res.status(200).json({ status: "ok", customer });
+  res.status(200).json({ succeeded: true, customer });
 };
 
 const deleteCustomer = async (req, res) => {
   try {
-    console.log(req.params.customerId);
     await Customer.findOneAndDelete({ _id: req.params.customerId });
-    res.status(200).json({ status: "ok" });
+    res.status(200).json({ succeeded: true });
   } catch (error) {}
 };
 
@@ -61,12 +55,12 @@ const getCustomerByName = async (req, res) => {
 const getCustomerDetails = async (req, res) => {
   console.log(req.body);
   const customerInfos = await Customer.findById(req.body.customerId);
-  console.log(customerInfos.customerName);
+  console.log(customerInfos);
 
   const customerTickets = await Ticket.find({
-    "customerInfos.customerName": customerInfos.customerName,
+    "customerInfos._id": req.body.customerId,
   });
-  console.log(customerTickets);
+  //console.log(customerTickets);
 
   res.status(200).json({ succeded: true, customerDetails: { customerInfos, customerTickets } });
 };

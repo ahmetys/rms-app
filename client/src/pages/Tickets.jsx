@@ -7,7 +7,7 @@ function Tickets() {
   const [tickets, setTickets] = useState([]);
   useEffect(() => {
     const getAllTickets = async () => {
-      const response = await axios.get(`${API_URL}/api/tickets/getAllTickets`);
+      const response = await axios.get(`${API_URL}/api/tickets/getAllTickets`, { withCredentials: true });
       setTickets([...response.data]);
     };
     getAllTickets();
@@ -55,7 +55,6 @@ function Tickets() {
           </div>
         </div>
       </div>
-      {/* Müsteriler Footer*/}
       <div className="p-5 bg-gray-50 border-t flex justify-end" />
     </section>
   );
@@ -70,14 +69,6 @@ function ServiceType({ serviceType }) {
     </span>
   );
 }
-
-// function ServiceStatus({ serviceStatus }) {
-//   return (
-//     <span className={`inline-flex space-x-2 cursor-pointer items-center rounded-md hover:drop-shadow-md duration-300 bg-gray-200 px-2 py-1 text-xs font-medium text-gray-950 ring-1 ring-inset ring-gray-600`}>
-//       <span>{serviceStatus} </span>
-//     </span>
-//   );
-// }
 
 function TicketRow({ ticket }) {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -133,11 +124,9 @@ function TicketRow({ ticket }) {
               <i className="fa-regular fa-file-lines text-xl" />
             </div>
           </Link>
-          {/* <Link to={`/tickets/edit/${ticket._id}`}> */}
           <div className="relative cursor-pointer z-0 h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
             <i onClick={() => setShowOptions(!showOptions)} className="fa-regular fa-pen-to-square text-xl" />
           </div>
-          {/* </Link> */}
           <div onClick={() => deleteTicket(ticket._id)} className="cursor-pointer  h-10 w-10 flex justify-center items-center rounded-full p-2 duration-300 hover:bg-mblue-600 hover:text-white">
             <i className="fa-regular fa-trash-can  text-xl" />
           </div>

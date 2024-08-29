@@ -7,21 +7,17 @@ function CustomerDetails() {
   const [customerDetails, setCustomerDetails] = useState({});
   let params = useParams();
   const navigate = useNavigate();
-
   useEffect(() => {
     const getCustomerDetails = async (customerId) => {
-      const response = await axios.post(`${API_URL}/api/customers/getCustomerDetails`, { customerId: customerId }, { withCredentials: true });
-      console.log(response.data);
-      setCustomerDetails({ ...response.data.customerDetails });
+      const { data } = await axios.post(`${API_URL}/api/customers/getCustomerDetails`, { customerId: customerId }, { withCredentials: true });
+      setCustomerDetails({ ...data.customerDetails });
     };
     getCustomerDetails(params.customerId);
   }, []);
   return (
     <section className="border drop-shadow-xl bg-white rounded mb-5">
       <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center relative">
-        <h1 className="col-span-4 text-4xl font-semibold justify-between flex items-center">
-          Müsteri Detaylari <span className="text-base">Müsteri ID: {params.customerId}</span>
-        </h1>
+        <h1 className="col-span-4 text-4xl font-semibold justify-between flex items-center">Kundendaten</h1>
         <div className="col-span-1 h-auto flex justify-end space-x-3">
           <div onClick={() => navigate(-1)} className="flex justify-center cursor-pointer items-center w-12 h-12 shrink-0 grow-0 text-white bg-mblue-500 rounded-full hover:bg-mblue-600 duration-300 drop-shadow-xl">
             <i className="fa-solid fa-arrow-left text-white text-2xl" />
@@ -29,11 +25,11 @@ function CustomerDetails() {
         </div>
       </div>
       <div>
-        <h2 className="p-5 font-semibold bg-gray-50 border-b">Müsteri Bilgileri</h2>
+        <h2 className="p-5 font-semibold bg-gray-50 border-b">Kundendaten</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           <div className="p-5 col-span-1 flex flex-col">
             <label htmlFor="" className="font-semibold">
-              Müsteri Adi:
+              Kundenname:
             </label>
             <div className="relative flex items-center">
               <span className="w-full h-12 py-3 ">{customerDetails.customerInfos?.customerName}</span>
@@ -41,7 +37,7 @@ function CustomerDetails() {
           </div>
           <div className="p-5 col-span-1 flex flex-col">
             <label htmlFor="" className="font-semibold">
-              Adres:
+              Addresse:
             </label>
             <div className="relative flex items-center">
               <span className="w-full h-12 py-3 ">{customerDetails.customerInfos?.customerAddress}</span>
@@ -49,7 +45,7 @@ function CustomerDetails() {
           </div>
           <div className="p-5 col-span-1 flex flex-col">
             <label htmlFor="" className="font-semibold">
-              Telefon:
+              Telefonnummer:
             </label>
             <div className="relative flex items-center">
               <span className="w-full h-12 py-3 ">{customerDetails.customerInfos?.customerPhone}</span>
@@ -57,7 +53,7 @@ function CustomerDetails() {
           </div>
           <div className="p-5 col-span-1 flex flex-col">
             <label htmlFor="" className="font-semibold">
-              Email:
+              E-mail:
             </label>
             <div className="relative flex items-center">
               <span className="w-full h-12 py-3 ">{customerDetails.customerInfos?.customerEmail}</span>
@@ -65,7 +61,7 @@ function CustomerDetails() {
           </div>
           <div className="p-5 col-span-1 flex flex-col">
             <label htmlFor="" className="font-semibold">
-              Iletisim Tercihleri:
+              Kontakt:
             </label>
             <div className="flex">
               <div className="relative flex items-center">{customerDetails.customerInfos?.contactPreferenceCall && <span className="py-3 mr-2">Arama</span>}</div>
@@ -76,7 +72,7 @@ function CustomerDetails() {
         </div>
       </div>
       <div>
-        <h2 className="p-5 font-semibold bg-gray-50 border-y">Müsteri Fisleri</h2>
+        <h2 className="p-5 font-semibold bg-gray-50 border-y">Kundentickets</h2>
         <div className="flex flex-col">
           <div className="overflow-x-auto">
             <div className="inline-block min-w-full">
@@ -84,12 +80,12 @@ function CustomerDetails() {
                 <table className="table-auto min-w-full overflow-auto overscroll-contain">
                   <thead className="border-b font-bold">
                     <tr>
-                      <td className="py-3 pl-5 pr-2">Müsteri</td>
-                      <td className="py-3 px-2">Cihaz</td>
-                      <td className="py-3 px-2">Ariza</td>
-                      <td className="py-3 px-2">Kayit Tarihi</td>
-                      <td className="py-3 px-2">Durum</td>
-                      <td className="py-3 pl-2 pr-5">Islemler</td>
+                      <td className="py-3 pl-5 pr-2">Kundenname</td>
+                      <td className="py-3 px-2">Gerät</td>
+                      <td className="py-3 px-2">Fehler</td>
+                      <td className="py-3 px-2">Anmeldedatum</td>
+                      <td className="py-3 px-2">Status</td>
+                      <td className="py-3 pl-2 pr-5">Optionen</td>
                     </tr>
                   </thead>
                   <tbody>

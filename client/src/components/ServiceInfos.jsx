@@ -42,9 +42,8 @@ function ServiceInfos({ newTicket, setNewTicket }) {
   }, [serviceInfos]);
   useEffect(() => {
     const getServiceList = async () => {
-      const response = await axios.get(`${API_URL}/api/services/getServiceList`, { withCredentials: true });
-      console.log(response.data);
-      setServiceList([...response.data]);
+      const { data } = await axios.get(`${API_URL}/api/services/getAllServiceTypes`, { withCredentials: true });
+      setServiceList([...data]);
     };
     getServiceList();
   }, []);

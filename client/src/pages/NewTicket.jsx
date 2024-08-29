@@ -14,15 +14,13 @@ function NewTicket() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log(newTicket);
-    const response = await axios.post(`${API_URL}/api/tickets/newTicket`, { ...newTicket }, { withCredentials: true });
-    response.data.succeeded && navigate("/tickets");
+    const { data } = await axios.post(`${API_URL}/api/tickets/newTicket`, { ...newTicket }, { withCredentials: true });
+    data.succeeded && navigate("/tickets");
     toast.success("Fis eklendi");
-    console.log(response.data);
   };
 
   return (
     <section className="border drop-shadow-xl bg-white rounded mb-5">
-      {/*Yeni Müsteri Header*/}
       <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center relative">
         <h1 className="col-span-4 text-4xl font-semibold">Yeni Fis Ekle</h1>
         <div className="col-span-1 h-auto flex justify-end space-x-3">
@@ -31,12 +29,10 @@ function NewTicket() {
           </div>
         </div>
       </div>
-      {/*Yeni Müsteri Body*/}
       <form onSubmit={handleFormSubmit}>
         <CustomerInfos newTicket={newTicket} setNewTicket={setNewTicket} />
         <DeviceInfos newTicket={newTicket} setNewTicket={setNewTicket} />
         <ServiceInfos newTicket={newTicket} setNewTicket={setNewTicket} />
-        {/*Yeni Servis  Fisi Footer*/}
         <div className="p-5 bg-gray-50 border-t flex justify-end">
           <button className="cursor-pointer w-full md:w-auto h-12 p-3 text-white bg-mblue-500 hover:bg-mblue-600 duration-300 drop-shadow-xl">Kaydet</button>
         </div>

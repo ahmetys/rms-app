@@ -9,7 +9,7 @@ import PageNotFound from "./pages/PageNotFound";
 import { useCookies } from "react-cookie";
 import Customers from "./pages/Customers";
 import SearchCustomer from "./pages/SearchCustomer";
-import ServiceList from "./pages/ServiceList";
+import ServiceTypes from "./pages/ServiceTypes";
 import { UserProvider } from "./context/UserContext";
 import CustomerDetails from "./pages/CustomerDetails";
 import EditCustomer from "./pages/EditCustomer";
@@ -39,7 +39,7 @@ function App() {
                 <Route path="/customers/edit/:customerId" element={<EditCustomer />}></Route>
                 <Route path="/customers/new" element={<NewCustomer />}></Route>
                 <Route path="/customers/search" element={<SearchCustomer />}></Route>
-                <Route path="/servicelist" element={<ServiceList />}></Route>
+                <Route path="/serviceTypes" element={<ServiceTypes />}></Route>
                 <Route path="/deviceDefinitions" element={<DeviceDefinitions />}></Route>
               </Route>
               <Route path="*" element={<PageNotFound />} />

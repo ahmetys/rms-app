@@ -1,7 +1,7 @@
 import express from "express";
 import { createUser, loginUser } from "../controllers/userController.js";
 import { createCustomer, getAllCustomers, getCustomerById, getCustomerByName, updateCustomer, deleteCustomer, getCustomerDetails } from "../controllers/customerController.js";
-import { newServiceType, getServiceList, updateServiceType, deleteServiceType } from "../controllers/serviceController.js";
+import { newServiceType, getAllServiceTypes, updateServiceType, deleteServiceType } from "../controllers/serviceController.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 import {
   newDeviceType,
@@ -35,7 +35,7 @@ mainRouter.route("/api/customers/getCustomerDetails").post(authMiddleware, getCu
 
 //SERVICES
 mainRouter.route("/api/services/newServiceType").post(authMiddleware, newServiceType);
-mainRouter.route("/api/services/getServiceList").get(authMiddleware, getServiceList);
+mainRouter.route("/api/services/getAllServiceTypes").get(authMiddleware, getAllServiceTypes);
 mainRouter.route("/api/services/updateServiceType/:id").put(authMiddleware, updateServiceType);
 mainRouter.route("/api/services/deleteServiceType/:id").delete(authMiddleware, deleteServiceType);
 

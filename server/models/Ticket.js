@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 const TicketSchema = new mongoose.Schema(
   {
     customerInfos: {
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+      },
       customerName: {
         type: String,
       },
