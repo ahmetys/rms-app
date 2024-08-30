@@ -9,7 +9,7 @@ function TicketDetails() {
   const navigate = useNavigate();
   useEffect(() => {
     const getTicketDetails = async () => {
-      const response = await axios.get(`${API_URL}/api/tickets/getTicketById/${params.ticketId}`);
+      const response = await axios.get(`${API_URL}/api/tickets/getTicketById/${params.ticketId}`, { withCredentials: true });
       console.log(response.data);
       setTicketDetails({ ...response.data.ticket });
     };
