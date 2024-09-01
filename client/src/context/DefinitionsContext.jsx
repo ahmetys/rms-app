@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { DefinitionsReducer } from "../reducer/DefinitionsReducer";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const DefinitionsContext = createContext(null);
 
@@ -12,13 +13,25 @@ export function DefinitionsProvider({ children }) {
   }, []);
 
   const getAllDeviceDefinitions = async () => {
-    const response = await axios.get(`${API_URL}/api/deviceDefinitions/getAllDeviceDefinitions`, { withCredentials: true });
-    return dispatch({ type: "GET_ALL_DEVICE_DEFINITIONS", payload: response.data });
+    try {
+      const { data } = await axios.get(`${API_URL}/api/deviceDefinitions/getAllDeviceDefinitions`, { withCredentials: true });
+      return dispatch({ type: "GET_ALL_DEVICE_DEFINITIONS", payload: data });
+    } catch (error) {
+      toast.error("Fehler");
+    }
   };
 
   const addNewDeviceType = async (deviceType) => {
-    const response = await axios.post(`${API_URL}/api/deviceDefinitions/newDeviceType`, { deviceType }, { withCredentials: true });
-    return dispatch({ type: "ADD_NEW_DEVICE_TYPE", payload: response.data.deviceType });
+    try {
+      const { data } = await axios.post(`${API_URL}/api/deviceDefinitions/newDeviceType`, { deviceType }, { withCredentials: true });
+      console.log(data);
+      if (data.succeeded) {
+        toast.success("Gerätart hinzugefügt");
+        return dispatch({ type: "ADD_NEW_DEVICE_TYPE", payload: data.deviceType });
+      }
+    } catch (error) {
+      toast.error("Fehler");
+    }
   };
 
   const updateDeviceType = async (deviceType) => {
@@ -27,7 +40,7 @@ export function DefinitionsProvider({ children }) {
   };
 
   const deleteDeviceType = async (deviceTypeId) => {
-    const response = await axios.delete(`${API_URL}/api/deviceDefinitions/deleteDeviceType/${deviceTypeId}`);
+    const response = await axios.delete(`${API_URL}/api/deviceDefinitions/deleteDeviceType/${deviceTypeId}`, { withCredentials: true });
     return dispatch({ type: "DELETE_DEVICE_TYPE", payload: { deviceTypeId: deviceTypeId } });
   };
 

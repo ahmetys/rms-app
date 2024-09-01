@@ -31,7 +31,7 @@ function ServiceTypeRow({ serviceTypesItem, type, serviceTypes, setServiceTypes,
       toast.error(error.message);
     }
   };
-  const handleChangeInput = (e) => {
+  const handleInputChange = (e) => {
     setServiceType({ serviceType: e.target.value });
   };
 
@@ -47,7 +47,7 @@ function ServiceTypeRow({ serviceTypesItem, type, serviceTypes, setServiceTypes,
       <tr className="hover:drop-shadow-xl duration-300 cursor-pointer">
         <td className="pl-5 pr-2 py-3">
           <form className="flex space-x-3" onSubmit={handleFormSubmit}>
-            <input required onChange={handleChangeInput} type="text" className="w-96 h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
+            <input required onChange={handleInputChange} type="text" className="w-96 h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
             <button className="cursor-pointer w-full md:w-auto h-12 p-3 text-white bg-mblue-500 hover:bg-mblue-600 duration-300 drop-shadow-xl">Kaydet</button>
           </form>
         </td>
@@ -60,7 +60,7 @@ function ServiceTypeRow({ serviceTypesItem, type, serviceTypes, setServiceTypes,
       <tr key={serviceTypesItem._id} className="hover:drop-shadow-xl duration-300 cursor-pointer ">
         <td className="pl-5 pr-2 py-3">
           <form className="flex space-x-3" onSubmit={handleFormSubmit}>
-            <input required onChange={handleChangeInput} type="text" defaultValue={serviceTypesItem.serviceType} disabled={!editMode} className="w-96 h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
+            <input required onChange={handleInputChange} type="text" defaultValue={serviceTypesItem.serviceType} disabled={!editMode} className="w-96 h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
             {editMode && <button className="cursor-pointer w-full md:w-auto h-12 p-3 text-white bg-mblue-500 hover:bg-mblue-600 duration-300 drop-shadow-xl">{editMode ? "Güncelle" : "Kaydet"}</button>}
           </form>
         </td>

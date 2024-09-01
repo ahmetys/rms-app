@@ -45,7 +45,6 @@ function Header({ setShowSidebar }) {
               <span className="w-full text-sm">{user.email}</span>
             </div>
           </div>
-          {/*User Actions Body*/}
           <ul className="border-b">
             <li className="flex items-center cursor-pointer p-3 space-x-3 hover:bg-mblue-200 hover:duration-300">
               <i className="fa-solid fa-id-badge text-2xl w-6"></i>
@@ -56,7 +55,6 @@ function Header({ setShowSidebar }) {
               <a href="#">Einstellungen</a>
             </li>
           </ul>
-          {/*User Actions Footer*/}
           <div className="flex items-center cursor-pointer p-3 space-x-3">
             <i className="fa-solid fa-right-from-bracket text-2xl  text-red-600 w-6"></i>
             <a href="" onClick={logout} className="text-red-600 font-semibold">

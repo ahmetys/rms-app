@@ -85,7 +85,6 @@ function Customers() {
             </div>
           </div>
         </div>
-        {/* Müsteriler Footer*/}
         <div className="p-5 bg-gray-50 border-t flex justify-end" />
       </section>
     </>

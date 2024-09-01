@@ -33,7 +33,6 @@ function Register() {
               navigate("/login");
             }
           } catch (error) {
-            console.log(error.response.data);
             toast.error("Fehler");
           }
         } else {

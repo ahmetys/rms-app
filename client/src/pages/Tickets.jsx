@@ -14,15 +14,9 @@ function Tickets() {
   }, []);
   return (
     <section className="border drop-shadow-xl bg-white rounded mb-5">
-      {/*Müsteriler Header*/}
       <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center relative">
-        <h1 className="col-span-4 text-4xl font-semibold">Servis Fisleri</h1>
+        <h1 className="col-span-4 text-4xl font-semibold">Tickets</h1>
         <div className="col-span-1 h-auto flex justify-end space-x-3">
-          {/* <NavLink to={`search`}>
-            <div className="flex justify-center cursor-pointer items-center w-12 h-12 shrink-0 grow-0 text-white bg-mblue-500 rounded-full hover:bg-mblue-600 duration-300 drop-shadow-xl">
-              <i className="fa-solid fa-search text-white text-2xl" />
-            </div>
-          </NavLink> */}
           <NavLink to={`new`}>
             <div className="flex justify-center cursor-pointer items-center w-12 h-12 shrink-0 grow-0 text-white bg-mblue-500 rounded-full hover:bg-mblue-600 duration-300 drop-shadow-xl">
               <i className="fa-solid fa-plus text-white text-2xl" />
@@ -33,16 +27,16 @@ function Tickets() {
       <div className="flex flex-col">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full">
-            <div className="overflow-hidden">
-              <table className="table-auto min-w-full overflow-auto overscroll-contain">
+            <div className="overflow-hidden  pb-24">
+              <table className="table-auto min-w-full overflow-auto overscroll-contain ">
                 <thead className="border-b font-bold">
                   <tr>
-                    <td className="py-3 pl-5 pr-2">Müsteri</td>
-                    <td className="py-3 px-2">Cihaz</td>
-                    <td className="py-3 px-2">Ariza</td>
-                    <td className="py-3 px-2">Kayit Tarihi</td>
-                    <td className="py-3 px-2">Durum</td>
-                    <td className="py-3 pl-2 pr-5">Islemler</td>
+                    <td className="py-3 pl-5 pr-2">Kunde</td>
+                    <td className="py-3 px-2">Gerät</td>
+                    <td className="py-3 px-2">Fehler</td>
+                    <td className="py-3 px-2">Anmeldedatum</td>
+                    <td className="py-3 px-2">Status</td>
+                    <td className="py-3 pl-2 pr-5">Optionen</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,7 +72,6 @@ function TicketRow({ ticket }) {
   const deleteTicket = () => {};
   const updateTicketStatus = async (status) => {
     const response = await axios.post(`${API_URL}/api/tickets/updateTicket`, { ticketId: ticket._id, status: status }, { withCredentials: true });
-    console.log(response.data);
     if (response.data.succeeded) {
       setShowOptions(false);
       ticket.serviceInfos.serviceStatus = status;

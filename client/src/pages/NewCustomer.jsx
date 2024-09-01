@@ -33,7 +33,6 @@ function newCustomerData() {
   };
   return (
     <section className="border drop-shadow-xl bg-white rounded mb-5">
-      {/*Yeni Müsteri Header*/}
       <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center relative">
         <h1 className="col-span-4 text-4xl font-semibold">Neuen Kunden hinzufügen</h1>
         <div className="col-span-1 h-auto flex justify-end space-x-3">

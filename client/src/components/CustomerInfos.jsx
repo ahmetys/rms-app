@@ -36,7 +36,7 @@ function CustomerInfos({ newTicket, setNewTicket }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            Müsteri Adi:
+            Kundenname:
           </label>
           <div className="relative flex items-center">
             <input required onChange={handleInputChange} value={customerInfos?.customerName} type="text" name="customerName" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
@@ -63,7 +63,7 @@ function CustomerInfos({ newTicket, setNewTicket }) {
         </div>
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            Adres:
+            Addresse:
           </label>
           <div className="relative flex items-center">
             <input onChange={handleInputChange} value={customerInfos?.customerAddress} type="text" name="customerAddress" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
@@ -71,7 +71,7 @@ function CustomerInfos({ newTicket, setNewTicket }) {
         </div>
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            Telefon:
+            Telefonnummer:
           </label>
           <div className="relative flex items-center">
             <input onChange={handleInputChange} value={customerInfos?.customerPhone} type="text" name="customerPhone" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
@@ -79,7 +79,7 @@ function CustomerInfos({ newTicket, setNewTicket }) {
         </div>
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            E-Posta:
+            E-Mail:
           </label>
           <div className="relative flex items-center">
             <input onChange={handleInputChange} value={customerInfos?.customerEmail} type="text" name="customerEmail" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
@@ -87,20 +87,20 @@ function CustomerInfos({ newTicket, setNewTicket }) {
         </div>
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            Iletisim Tercihleri
+            Kontakt:
           </label>
           <div className="flex space-x-5">
             <div className="flex items-center space-x-2">
-              <input key={`contactPreferenceWhatsapp${Math.random()}`} onChange={handleInputChange} checked={customerInfos?.contactPreferenceWhatsapp} type="checkbox" name="contactPreferenceWhatsapp" className="h-12 w-6" />
-              <label htmlFor="">WhatsApp</label>
+              <input key={`contactPreferenceWhatsapp${Math.random()}`} onChange={handleInputChange} checked={customerInfos?.contactPreferenceWhatsapp} type="checkbox" id="contactPreferenceWhatsapp" name="contactPreferenceWhatsapp" className="h-12 w-6" />
+              <label htmlFor="contactPreferenceWhatsapp">WhatsApp</label>
             </div>
             <div className="flex items-center space-x-2">
-              <input key={`contactPreferenceSms${Math.random()}`} onChange={handleInputChange} checked={customerInfos?.contactPreferenceSms} type="checkbox" name="contactPreferenceSms" className="h-12 w-6" />
-              <label htmlFor="">SMS</label>
+              <input key={`contactPreferenceSms${Math.random()}`} onChange={handleInputChange} checked={customerInfos?.contactPreferenceSms} type="checkbox" id="contactPreferenceSms" name="contactPreferenceSms" className="h-12 w-6" />
+              <label htmlFor="contactPreferenceSms">SMS</label>
             </div>
             <div className="flex items-center space-x-2">
-              <input key={`contactPreferenceCall${Math.random()}`} onChange={handleInputChange} checked={customerInfos?.contactPreferenceCall} type="checkbox" name="contactPreferenceCall" className="h-12 w-6" />
-              <label htmlFor="">Arama</label>
+              <input key={`contactPreferenceCall${Math.random()}`} onChange={handleInputChange} checked={customerInfos?.contactPreferenceCall} type="checkbox" id="contactPreferenceCall" name="contactPreferenceCall" className="h-12 w-6" />
+              <label htmlFor="contactPreferenceCall">Arama</label>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ function DeviceInfos({ newTicket, setNewTicket }) {
   const [deviceBrands, setDeviceBrands] = useState([]);
   const [deviceModels, setDeviceModels] = useState([]);
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     if (e.target.name === "deviceType") {
       deviceDefinitions.map((dt) => {
         if (dt.deviceType === e.target.value) {
@@ -37,14 +37,14 @@ function DeviceInfos({ newTicket, setNewTicket }) {
   }, []);
   return (
     <div>
-      <h2 className="p-5 font-semibold bg-gray-50 border-y">Cihaz Bilgileri</h2>
+      <h2 className="p-5 font-semibold bg-gray-50 border-y">Gerätedaten</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            Cihaz:
+            Gerät:
           </label>
-          <select onChange={handleChange} name="deviceType" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700">
-            <option>Secim yapin</option>
+          <select onChange={handleInputChange} name="deviceType" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700">
+            <option>Auswählen</option>
             {deviceTypes.map((item, index) => {
               return (
                 <option key={index} value={item}>
@@ -56,10 +56,10 @@ function DeviceInfos({ newTicket, setNewTicket }) {
         </div>
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            Marka:
+            Marke:
           </label>
-          <select onChange={handleChange} name="deviceBrand" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700">
-            <option>Secim yapin</option>
+          <select onChange={handleInputChange} name="deviceBrand" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700">
+            <option>Auswählen</option>
             {deviceBrands.map((item, index) => {
               return (
                 <option key={index} value={item}>
@@ -71,10 +71,10 @@ function DeviceInfos({ newTicket, setNewTicket }) {
         </div>
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            Model:
+            Modell:
           </label>
-          <select onChange={handleChange} name="deviceModel" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700">
-            <option>Secim yapin</option>
+          <select onChange={handleInputChange} name="deviceModel" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700">
+            <option>Auswählen</option>
             {deviceModels.map((item, index) => {
               return (
                 <option key={index} value={item}>
@@ -86,15 +86,15 @@ function DeviceInfos({ newTicket, setNewTicket }) {
         </div>
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            Seri No:
+            Seriennummer:
           </label>
-          <input onChange={handleChange} name="deviceSerial" type="text" className="h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
+          <input onChange={handleInputChange} name="deviceSerial" type="text" className="h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
         </div>
         <div className="p-5 col-span-1 flex flex-col">
           <label htmlFor="" className="font-semibold">
-            IMEI No:
+            IMEI Nummer:
           </label>
-          <input onChange={handleChange} name="deviceImei" type="text" className="h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
+          <input onChange={handleInputChange} name="deviceImei" type="text" className="h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
         </div>
       </div>
     </div>

@@ -9,7 +9,6 @@ import {
   updateDeviceType,
   deleteDeviceType,
   newDeviceBrand,
-  //getAllDeviceBrands,
   updateDeviceBrand,
   deleteDeviceBrand,
   getDeviceBrandsByDeviceType,
@@ -21,6 +20,7 @@ import {
 import { getAllTickets, newTicket, getTicketById, updateTicket } from "../controllers/ticketController.js";
 const mainRouter = express.Router();
 
+//LOGIN&REGISTER
 mainRouter.route("/register").post(createUser);
 mainRouter.route("/login").post(loginUser);
 
@@ -51,17 +51,16 @@ mainRouter.route("/api/deviceDefinitions/newDeviceBrand").post(authMiddleware, n
 mainRouter.route("/api/deviceDefinitions/updateDeviceBrand").put(authMiddleware, updateDeviceBrand);
 mainRouter.route("/api/deviceDefinitions/deleteDeviceBrand/:deviceTypeId/:deviceBrandId").delete(authMiddleware, deleteDeviceBrand);
 mainRouter.route("/api/definitions/getDeviceBrandsByDeviceType/:deviceTypeId").get(authMiddleware, getDeviceBrandsByDeviceType);
-// mainRouter.route("/api/definitions/getAllDeviceBrands").get(authMiddleware, getAllDeviceBrands);
 //DEVICE MODEL CRUD
 mainRouter.route("/api/deviceDefinitions/newDeviceModel").post(authMiddleware, newDeviceModel);
 mainRouter.route("/api/deviceDefinitions/updateDeviceModel/:deviceModelId").put(authMiddleware, updateDeviceModel);
 mainRouter.route("/api/deviceDefinitions/deleteDeviceModel/:deviceTypeId/:deviceBrandId/:deviceModelId").delete(authMiddleware, deleteDeviceModel);
 mainRouter.route("/api/definitions/getDeviceModelsByDeviceBrand/:deviceBrandId").get(authMiddleware, getDeviceModelsByDeviceBrand);
-// mainRouter.route("/api/customers/getAllCustomers").get(getAllCustomers);
 
 //TICKETS
 mainRouter.route("/api/tickets/newTicket").post(authMiddleware, newTicket);
 mainRouter.route("/api/tickets/getAllTickets").get(authMiddleware, getAllTickets);
 mainRouter.route("/api/tickets/getTicketById/:ticketId").get(authMiddleware, getTicketById);
 mainRouter.route("/api/tickets/updateTicket").post(authMiddleware, updateTicket);
+
 export default mainRouter;

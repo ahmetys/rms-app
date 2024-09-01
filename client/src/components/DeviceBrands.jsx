@@ -18,7 +18,7 @@ function DeviceBrands({ selectedDeviceTypeId, selectedDeviceBrandId, setSelected
   return (
     <div className="col-span-12 md:col-span-4 border drop-shadow-xl bg-white rounded  ">
       <div className="p-5 bg-gray-50 border-b grid grid-cols-5 justify-between items-center">
-        <h1 className="col-span-4 text-xl font-semibold">Cihaz Markalari</h1>
+        <h1 className="col-span-4 text-xl font-semibold">Gerätemarken</h1>
       </div>
       <div>
         <NewDeviceBrandForm selectedDeviceTypeId={selectedDeviceTypeId} />

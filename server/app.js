@@ -10,7 +10,6 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(cors());
 app.use(cookieParser());
 app.use(
   cors({
@@ -18,8 +17,5 @@ app.use(
     credentials: true,
   })
 );
-// app.use("*", authMiddleware);
-//app.options(cors(corsConfig));
-//app.use("*", checkUser);
 app.use("/", mainRouter);
 app.listen(process.env.PORT, () => console.log("Server is running on PORT:" + process.env.PORT));

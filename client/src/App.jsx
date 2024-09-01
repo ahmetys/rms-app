@@ -1,24 +1,22 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Layout from "./pages/Layout";
-import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { ToastContainer } from "react-toastify";
-import NewCustomer from "./pages/NewCustomer";
 import PageNotFound from "./pages/PageNotFound";
-import { useCookies } from "react-cookie";
-import Customers from "./pages/Customers";
-import SearchCustomer from "./pages/SearchCustomer";
-import ServiceTypes from "./pages/ServiceTypes";
-import { UserProvider } from "./context/UserContext";
-import CustomerDetails from "./pages/CustomerDetails";
-import EditCustomer from "./pages/EditCustomer";
 import Tickets from "./pages/Tickets";
 import NewTicket from "./pages/NewTicket";
-import DeviceDefinitions from "./pages/DeviceDefinitions";
-import { DefinitionsProvider } from "./context/DefinitionsContext";
+import NewCustomer from "./pages/NewCustomer";
 import TicketDetails from "./pages/TicketDetails";
-import Cookies from "js-cookie";
+import Customers from "./pages/Customers";
+import CustomerDetails from "./pages/CustomerDetails";
+import EditCustomer from "./pages/EditCustomer";
+import SearchCustomer from "./pages/SearchCustomer";
+import ServiceTypes from "./pages/ServiceTypes";
+import DeviceDefinitions from "./pages/DeviceDefinitions";
+import { UserProvider } from "./context/UserContext";
+import { DefinitionsProvider } from "./context/DefinitionsContext";
+import { useCookies } from "react-cookie";
 function App() {
   return (
     <>
@@ -30,7 +28,6 @@ function App() {
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
               <Route path="/" element={<PrivateRoute />}>
-                {/* <Route path="/" element={<Dashboard />}></Route> */}
                 <Route path="/tickets" element={<Tickets />}></Route>
                 <Route path="/tickets/new" element={<NewTicket />}></Route>
                 <Route path="/tickets/:ticketId" element={<TicketDetails />}></Route>
@@ -51,7 +48,7 @@ function App() {
   );
 }
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = () => {
   const [cookie, setCookie, removeCookie] = useCookies(["token"]);
 
   if (!cookie.token) {

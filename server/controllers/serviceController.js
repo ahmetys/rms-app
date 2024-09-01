@@ -1,6 +1,5 @@
 import ServiceType from "../models/ServiceType.js";
 const newServiceType = async (req, res) => {
-  console.log(req.body);
   try {
     const serviceType = await ServiceType.create(req.body);
     res.status(201).json({ succeeded: true, serviceType });
@@ -22,8 +21,6 @@ const updateServiceType = async (req, res) => {
     const serviceType = await ServiceType.findById(req.params.id);
     serviceType.serviceType = req.body.serviceType;
     serviceType.save();
-    console.log(serviceType);
-
     res.status(200).json({ succeeded: true, serviceType });
   } catch (error) {
     res.status(500).json({
@@ -34,8 +31,6 @@ const updateServiceType = async (req, res) => {
 };
 
 const deleteServiceType = async (req, res) => {
-  console.log(req.body);
-
   try {
     await ServiceType.findOneAndDelete({ _id: req.params.id });
     res.status(200).json({ succeeded: true });

@@ -3,8 +3,6 @@ export function DefinitionsReducer(state, action) {
     case "GET_ALL_DEVICE_DEFINITIONS":
       return [...action.payload];
     case "ADDED_NEW_DEFINITION":
-      console.log(action.payload);
-
       return state.map((def) => {
         if (def._id === action.payload._id) {
           return action.payload;
@@ -14,7 +12,6 @@ export function DefinitionsReducer(state, action) {
     case "ADD_NEW_DEVICE_TYPE":
       return [...state, action.payload];
     case "UPDATE_DEVICE_TYPE":
-      console.log(action.payload);
       return state.map((deviceType) => {
         if (action.payload._id === deviceType._id) {
           return action.payload;
@@ -23,7 +20,6 @@ export function DefinitionsReducer(state, action) {
         }
       });
     case "DELETE_DEVICE_TYPE":
-      console.log(state);
       return state.filter((deviceType) => deviceType._id !== action.payload.deviceTypeId);
     case "SET_DEVICE_BRANDS":
       return [...action.payload];
@@ -32,7 +28,6 @@ export function DefinitionsReducer(state, action) {
     case "SET_DEVICE_BRANDS_BY_DEVICE_TYPE":
       return state;
     case "UPDATE_DEVICE_BRAND":
-      console.log(action.payload);
       return state.map((deviceType) => {
         if (action.payload._id === deviceType._id) {
           return action.payload;
@@ -54,17 +49,11 @@ export function DefinitionsReducer(state, action) {
           return deviceType;
         }
       });
-
-      console.log(state);
       return state;
 
     case "ADD_NEW_DEVICE_MODEL":
-      console.log(state);
-      console.log(action.payload);
-
       return [...state, action.payload];
     case "UPDATE_DEVICE_MODEL":
-      console.log(action.payload);
       return state.map((deviceModel) => {
         if (action.payload._id === deviceModel._id) {
           return action.payload;
@@ -73,14 +62,10 @@ export function DefinitionsReducer(state, action) {
         }
       });
     case "DELETE_DEVICE_MODEL":
-      console.log(action.payload);
-
       state = state.map((deviceType) => {
         if (deviceType._id === action.payload.deviceTypeId) {
           deviceType.deviceBrands.map((deviceBrand) => {
             if (deviceBrand._id === action.payload.deviceBrandId) {
-              console.log(deviceBrand.deviceModels);
-
               const newDeviceModels = deviceBrand.deviceModels.filter((deviceModel) => {
                 return deviceModel._id !== action.payload.deviceModelId;
               });
