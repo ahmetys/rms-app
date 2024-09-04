@@ -18,4 +18,8 @@ app.use(
   })
 );
 app.use("/", mainRouter);
+app.use(express.static("views"));
+app.get("/", (req, res) => {
+  res.sendFile("./views/index.html", { root: "." });
+});
 app.listen(process.env.PORT, () => console.log("Server is running on PORT:" + process.env.PORT));
