@@ -13,7 +13,7 @@ function NewTicket() {
     e.preventDefault();
     const { data } = await axios.post(`${API_URL}/api/tickets/newTicket`, { ...newTicket }, { withCredentials: true });
     data.succeeded && navigate("/tickets");
-    toast.success("Fis eklendi");
+    toast.success("Ticket hinzugefügt");
   };
 
   return (

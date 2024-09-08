@@ -22,4 +22,4 @@ app.use(express.static("views"));
 app.get("/", (req, res) => {
   res.sendFile("./views/index.html", { root: "." });
 });
-app.listen(3000, () => console.log("Server is running on PORT:" + 3000));
+app.listen(process.env.PORT, () => console.log("Server is running on PORT:" + process.env.PORT));

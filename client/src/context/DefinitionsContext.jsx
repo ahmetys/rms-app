@@ -2,14 +2,20 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import { DefinitionsReducer } from "../reducer/DefinitionsReducer";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useUser } from "./UserContext";
 
 const DefinitionsContext = createContext(null);
 
 export function DefinitionsProvider({ children }) {
   const API_URL = import.meta.env.VITE_API_URL;
   const [deviceDefinitions, dispatch] = useReducer(DefinitionsReducer, []);
+  const user = useUser();
+
   useEffect(() => {
-    getAllDeviceDefinitions();
+    console.log(user);
+    if (user.username !== null) {
+      getAllDeviceDefinitions();
+    }
   }, []);
 
   const getAllDeviceDefinitions = async () => {
@@ -77,6 +83,7 @@ export function DefinitionsProvider({ children }) {
 
   const values = {
     deviceDefinitions,
+    getAllDeviceDefinitions,
     addNewDeviceType,
     updateDeviceType,
     deleteDeviceType,
