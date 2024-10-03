@@ -1,4 +1,6 @@
 export function DefinitionsReducer(state, action) {
+  console.log(action);
+
   switch (action.type) {
     case "GET_ALL_DEVICE_DEFINITIONS":
       return [...action.payload];
