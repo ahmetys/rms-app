@@ -67,28 +67,30 @@ function Register() {
           <h2 className="text-xl font-semibold mb-3">Benutzerregistrierung</h2>
           <form onSubmit={handleRegisterFormSubmit}>
             <div>
-              <input required={true} autoComplete="new-password" type="text" name="username" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Benutzername" />
+              <input data-cy="username" required={true} autoComplete="new-password" type="text" name="username" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Benutzername" />
             </div>
             <div>
-              <input required={true} type="email" name="email" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="E-Mail" />
+              <input data-cy="email" required={true} type="email" name="email" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="E-Mail" />
             </div>
             <div className="relative flex justify-end items-center mb-4">
-              <input required={true} type={inputType} name="password" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Passwort" />
+              <input data-cy="password" required={true} type={inputType} name="password" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Passwort" />
               <button type="button" onClick={handlePasswordInputToggle} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
                 <i className="fa-regular fa-eye text-xl"></i>
               </button>
             </div>
             <div className="relative flex justify-end items-center mb-4">
-              <input required={true} type={inputType} name="confirmPassword" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Passwort wiederholen" />
+              <input data-cy="confirm-password" required={true} type={inputType} name="confirmPassword" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Passwort wiederholen" />
               <button type="button" onClick={handlePasswordInputToggle} className="absolute right-1 flex items-center justify-center text-gray-400 hover:bg-mblue-300 hover:text-mblue-800 rounded-full w-10 h-10 p-2">
                 <i className="fa-regular fa-eye text-xl"></i>
               </button>
             </div>
             <div className="flex items-center space-x-3 mb-3">
-              <input required={true} id="privacyPolicy" type="checkbox" name="privacyPolicy" className="h-6 w-6 " />
+              <input data-cy="privacy-policy" required={true} id="privacyPolicy" type="checkbox" name="privacyPolicy" className="h-6 w-6 " />
               <label htmlFor="privacyPolicy">Ich habe die AGB gelesen.</label>
             </div>
-            <button className="cursor-pointer p-3 mb-6 w-full text-white bg-mblue-500 rounded-none hover:bg-mblue-600 duration-300 drop-shadow-xl">Anmelden</button>
+            <button data-cy="register-button" className="cursor-pointer p-3 mb-6 w-full text-white bg-mblue-500 rounded-none hover:bg-mblue-600 duration-300 drop-shadow-xl">
+              Anmelden
+            </button>
             <div className="flex justify-center space-x-3 mt-2">
               <p>Sie haben bereits ein Konto?</p>
               <Link to={`/login`} className="text-mblue-800 font-semibold">

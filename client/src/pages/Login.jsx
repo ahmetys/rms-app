@@ -61,10 +61,10 @@ function Login() {
           <p className="mb-4">Bitte melden Sie sich an, um fortzufahren.</p>
           <form onSubmit={handleLoginFormSubmit}>
             <div>
-              <input type="text" required={true} name="username" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Benutzername" />
+              <input type="text" required={true} name="username" data-cy="username" className="p-3 h-12 rounded-none mb-4 w-full border focus:outline-none focus:border-mblue-700 border-spacing-6" placeholder="Benutzername" />
             </div>
             <div className="relative flex justify-end items-center mb-4">
-              <input type={inputType} required={true} name="password" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Passwort " />
+              <input type={inputType} required={true} name="password" data-cy="password" className="py-3 pl-3 pr-10 w-full  rounded-none focus:outline-none focus:border-mblue-700 border" placeholder="Passwort " />
               <button type="button" onClick={handlePasswordInputToggle} className="w-10 h-10  flex items-center justify-center absolute right-1 text-gray-400 duration-300  hover:bg-mblue-300 hover:text-mblue-800 rounded-full p-2">
                 <i className="fa-regular fa-eye text-xl"></i>
               </button>
@@ -78,11 +78,13 @@ function Login() {
                 Passwort vergessen?
               </Link>
             </div>
-            <button className="cursor-pointer p-3 mb-4 w-full text-white bg-mblue-500 rounded-none hover:bg-mblue-600 duration-300 drop-shadow-xl">Einloggen</button>
+            <button data-cy="login-button" className="cursor-pointer p-3 mb-4 w-full text-white bg-mblue-500 rounded-none hover:bg-mblue-600 duration-300 drop-shadow-xl">
+              Einloggen
+            </button>
           </form>
           <div className="flex justify-center space-x-3 mb-4">
             <p>Sie haben noch kein Konto?</p>
-            <Link to="/register" className="text-mblue-800 font-semibold">
+            <Link to="/register" data-cy="register" className="text-mblue-800 font-semibold">
               Registrierung
             </Link>
           </div>

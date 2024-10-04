@@ -50,7 +50,7 @@ function newCustomerData() {
                 Kundenname:
               </label>
               <div className="relative flex items-center">
-                <input required onChange={handleInputChange} type="text" name="customerName" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
+                <input data-cy="name" required onChange={handleInputChange} type="text" name="customerName" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
               </div>
             </div>
             <div className="p-5 col-span-1 flex flex-col">
@@ -58,7 +58,7 @@ function newCustomerData() {
                 Addresse:
               </label>
               <div className="relative flex items-center">
-                <input onChange={handleInputChange} type="text" name="customerAddress" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
+                <input data-cy="addresse" onChange={handleInputChange} type="text" name="customerAddress" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
               </div>
             </div>
             <div className="p-5 col-span-1 flex flex-col">
@@ -66,7 +66,7 @@ function newCustomerData() {
                 Telefonnummer:
               </label>
               <div className="relative flex items-center">
-                <input onChange={handleInputChange} type="text" name="customerPhone" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
+                <input data-cy="phone" onChange={handleInputChange} type="text" name="customerPhone" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
               </div>
             </div>
             <div className="p-5 col-span-1 flex flex-col">
@@ -74,7 +74,7 @@ function newCustomerData() {
                 E-Mail:
               </label>
               <div className="relative flex items-center">
-                <input onChange={handleInputChange} type="text" name="customerEmail" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
+                <input data-cy="email" onChange={handleInputChange} type="text" name="customerEmail" className="w-full h-12 p-3 border focus:outline-none rounded-none focus:border-mblue-700" />
               </div>
             </div>
             <div className="p-5 col-span-1 flex flex-col">
@@ -83,15 +83,15 @@ function newCustomerData() {
               </label>
               <div className="flex space-x-5">
                 <div className="flex items-center space-x-2">
-                  <input onChange={handleInputChange} type="checkbox" id="contactPreferenceWhatsapp" name="contactPreferenceWhatsapp" className="h-12 w-6" />
+                  <input data-cy="whatsapp" onChange={handleInputChange} type="checkbox" id="contactPreferenceWhatsapp" name="contactPreferenceWhatsapp" className="h-12 w-6" />
                   <label htmlFor="contactPreferenceWhatsapp">WhatsApp</label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <input onChange={handleInputChange} type="checkbox" id="contactPreferenceSms" name="contactPreferenceSms" className="h-12 w-6" />
+                  <input data-cy="sms" onChange={handleInputChange} type="checkbox" id="contactPreferenceSms" name="contactPreferenceSms" className="h-12 w-6" />
                   <label htmlFor="contactPreferenceSms">SMS</label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <input onChange={handleInputChange} type="checkbox" id="contactPreferenceCall" name="contactPreferenceCall" className="h-12 w-6" />
+                  <input data-cy="call" onChange={handleInputChange} type="checkbox" id="contactPreferenceCall" name="contactPreferenceCall" className="h-12 w-6" />
                   <label htmlFor="contactPreferenceCall">Arama</label>
                 </div>
               </div>
@@ -99,7 +99,9 @@ function newCustomerData() {
           </div>
         </div>
         <div className="p-5 bg-gray-50 border-t flex justify-end">
-          <button className="cursor-pointer w-full md:w-auto h-12 p-3 text-white bg-mblue-500 hover:bg-mblue-600 duration-300 drop-shadow-xl">Speichern</button>
+          <button data-cy="add-new-customer-button" className="cursor-pointer w-full md:w-auto h-12 p-3 text-white bg-mblue-500 hover:bg-mblue-600 duration-300 drop-shadow-xl">
+            Speichern
+          </button>
         </div>
       </form>
     </section>

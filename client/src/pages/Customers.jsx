@@ -30,7 +30,7 @@ function Customers() {
                 <i className="fa-solid fa-search text-white text-2xl" />
               </div>
             </NavLink>
-            <NavLink to={`new`}>
+            <NavLink to={`new`} data-cy="new-customer-icon">
               <div className="flex justify-center cursor-pointer items-center w-12 h-12 shrink-0 grow-0 text-white bg-mblue-500 rounded-full hover:bg-mblue-600 duration-300 drop-shadow-xl">
                 <i className="fa-solid fa-plus text-white text-2xl" />
               </div>

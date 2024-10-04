@@ -31,7 +31,7 @@ function Header({ setShowSidebar }) {
           <button onClick={toggleNotificationsPopup} type="button" className=" text-white  hover:bg-mblue-200 hover:text-mblue-950 duration-300 rounded-full w-10 h-10">
             <i className="fa-solid fa-bell text-xl"></i>
           </button>
-          <button onClick={toggleUserActionsPopup} type="button" className="text-white  hover:bg-mblue-200 hover:text-mblue-950 duration-300 rounded-full w-10 h-10">
+          <button onClick={toggleUserActionsPopup} data-cy="user-icon" type="button" className="text-white  hover:bg-mblue-200 hover:text-mblue-950 duration-300 rounded-full w-10 h-10">
             <i className="fa-solid fa-user text-xl"></i>
           </button>
         </div>
@@ -41,7 +41,9 @@ function Header({ setShowSidebar }) {
           <div className="flex space-x-3 border-b p-3 items-center">
             <img src="../src/assets/images/avatar.png" className="rounded-full h-10" />
             <div className="flex flex-col">
-              <p className="font-bold">{user.username}</p>
+              <p data-cy="logged-in-user" className="font-bold">
+                {user.username}
+              </p>
               <span className="w-full text-sm">{user.email}</span>
             </div>
           </div>
