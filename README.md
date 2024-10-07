@@ -6,9 +6,9 @@ A project I developed to keep track of the devices repaired in the repair servic
 
 ## Demo
 
-Username:test
+Username: test
 
-Password:test
+Password: test
 
 [Link](https://rms-app-a61afc0f7f06.herokuapp.com/) 
   
